@@ -94,13 +94,13 @@ LEADS = [
     {
         "n": 2, "place": "KYIV", "field": "WAR",
         "head": "Russia fires a wave of ballistic missiles at Kyiv",
-        "dek": "Explosions from 01:25, several waves through the night; three Dnipro bridges damaged. — Kyiv Independent",
+        "dek": "Missiles from 01:25; 3 Dnipro bridges hit. — Kyiv Independent",
         "scene": "kyiv",
     },
     {
         "n": 3, "place": "ANTALYA", "field": "CLIMATE",
         "head": "COP31 reaches its final day deadlocked",
-        "dek": "Closing draft drops the fossil-fuel phase-out; a $120bn adaptation fund stays unresolved. — AFP",
+        "dek": "Phase-out dropped; $120bn adaptation fund unresolved. — AFP",
         "scene": "cop31",
     },
 ]
@@ -108,7 +108,7 @@ LEADS = [
 MEDIUMS = [
     {"n": 4, "place": "BRUSSELS", "field": "DIPLOMACY",
      "head": "EU meets Britain at second EU–UK summit",
-     "dek": "Costa and von der Leyen host PM Burnham; a joint declaration is due. — EU Council",
+     "dek": "Costa and von der Leyen host PM Burnham; declaration due. — EU Council",
      "scene": "flags"},
     {"n": 5, "place": "SEOUL / TOKYO", "field": "MARKETS",
      "head": "AI sell-off sinks Asia to worst week since 2020",
@@ -132,11 +132,11 @@ MEDIUMS = [
      "scene": "strike"},
     {"n": 10, "place": "TOKYO", "field": "ECONOMY",
      "head": "Japan core inflation quickens to 2.2%",
-     "dek": "Above the BoJ's 2% target for a second month; a December hike is eyed. — Reuters",
+     "dek": "Above BoJ's 2% target a second month; Dec hike eyed. — Reuters",
      "scene": "yen"},
     {"n": 11, "place": "SENEGAL", "field": "MIGRATION",
      "head": "Migrant boat capsizes off Senegal",
-     "dek": "Four bodies recovered, dozens missing after the pirogue went down off Yenne. — Reuters",
+     "dek": "Four bodies recovered, dozens missing off Yenne. — Reuters",
      "scene": "boat"},
     {"n": 12, "place": "SAN SALVADOR", "field": "POLITICS",
      "head": "Bukele files to run for a third term",
@@ -144,7 +144,7 @@ MEDIUMS = [
      "scene": "ballot"},
     {"n": 13, "place": "BARCELONA", "field": "HEALTH",
      "head": "Pancreatic cancer pill shrinks tumours 60.7%",
-     "dek": "Daraxonrasib + chemo in 61 patients; presented in Barcelona. Early trial. — Reuters",
+     "dek": "Daraxonrasib + chemo in 61 patients; early trial. — Revolution Medicines",
      "scene": "pill"},
 ]
 
@@ -196,12 +196,12 @@ FIELDS = [
 ]
 
 NUMBERS = [
-    ("300,000", "evacuated as Akvan hits Odisha"),
+    ("300,000", "evacuated as Akvan hits"),
     ("$97.17", "Anthropic's first close, +17%"),
     ("118", "Phillips' historic century"),
-    ("−7%", "Asia shares' worst week since 2020"),
-    ("$120bn", "COP31 adaptation finance unresolved"),
-    ("2.2%", "Japan core inflation, BoJ hike eyed"),
+    ("−7%", "Asia shares' worst since 2020"),
+    ("$120bn", "COP31 finance unresolved"),
+    ("2.2%", "Japan core inflation, BoJ hike"),
 ]
 
 TIMELINE = [
@@ -504,31 +504,44 @@ def main():
            "A cyclone comes ashore in Odisha · Missiles rain on Kyiv · Climate talks reach their final day",
            font=f_sub, fill=DARKRED)
 
-    # ---- region bar
+    # ---- region bar (label shrinks until it fits its segment; small
+    # counts get narrow segments, so AFRICA/OCEANIA drop a size or two)
     y = 112
     total = sum(n for _, n, _ in REGIONS)
     bx = M
-    f_reg = font(SANS_BOLD, 11)
     for name, n, col in REGIONS:
         seg_w = CW * n / total
         d.rectangle([bx, y, bx + seg_w - 1, y + 19], fill=col)
         label = f"{name} {n}"
+        f_reg = font(SANS_BOLD, 11)
+        for sz in (11, 10, 9, 8):
+            f_try = font(SANS_BOLD, sz)
+            if d.textlength(label, font=f_try) <= seg_w - 4:
+                f_reg = f_try
+                break
         tw = d.textlength(label, font=f_reg)
-        d.text((bx + (seg_w - tw) / 2, y + 3), label, font=f_reg, fill=(255, 255, 255))
+        ty = y + max(3, (19 - f_reg.size) // 2)
+        d.text((bx + (seg_w - tw) / 2, ty), label, font=f_reg, fill=(255, 255, 255))
         bx += seg_w
 
-    # ---- by-field bar
+    # ---- by-field bar (label shrinks until it fits its segment; never
+    # omitted — a missing label is worse than a smaller one)
     y = 133
     bx = M
-    f_field = font(SANS_BOLD, 9)
     for name, n, col in FIELDS:
         seg_w = CW * n / total
         d.rectangle([bx, y, bx + seg_w - 1, y + 16], fill=col)
         label = f"{name} {n}"
+        f_field = font(SANS_BOLD, 9)
+        for sz in (9, 8, 7, 6):
+            f_try = font(SANS_BOLD, sz)
+            if d.textlength(label, font=f_try) <= seg_w - 4:
+                f_field = f_try
+                break
         tw = d.textlength(label, font=f_field)
-        if tw < seg_w - 4:
-            d.text((bx + (seg_w - tw) / 2, y + 3), label, font=f_field,
-                   fill=(255, 255, 255))
+        ty = y + max(2, (16 - f_field.size) // 2)
+        d.text((bx + (seg_w - tw) / 2, ty), label, font=f_field,
+               fill=(255, 255, 255))
         bx += seg_w
 
     # ---- by the numbers

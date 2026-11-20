@@ -20,20 +20,19 @@ Science & tech 3 · Diplomacy 3 = 36.
    Gopalpur ~noon IST, winds 90–100 km/h gusting 110; 300,000 evacuated,
    423 rescue teams, 105,304 in 1,224 shelters. (IMD / The Hindu, 20 Nov)
 2. KYIV · WAR — Russia fires a wave of ballistic missiles at Kyiv.
-   Explosions from 01:25 local, several waves through the night; three
-   Dnipro bridges damaged, fires in three districts; the wider overnight
-   attack used 16 ballistic missiles and 280 drones. (Kyiv Independent /
-   Reuters, 20 Nov)
-3. ANTALYA · CLIMATE — COP31 reaches its final day deadlocked. Closing
-   draft drops the fossil-fuel phase-out; a $120bn/yr adaptation fund
-   (by 2035) stays unresolved; hosts push a "35 by 35" clean-power goal.
-   (AFP / Reuters, 20 Nov)
+   Missiles from 01:25; 3 Dnipro bridges hit. (Kyiv Independent /
+   Reuters, 20 Nov) — detail: fires in three districts; the wider
+   overnight attack used 16 ballistic missiles and 280 drones.
+3. ANTALYA · CLIMATE — COP31 reaches its final day deadlocked. Phase-out
+   dropped; $120bn adaptation fund unresolved. (AFP / Reuters, 20 Nov)
+   — detail: a $120bn/yr adaptation fund (by 2035); hosts push a "35 by 35"
+   clean-power goal.
 
 ## Mediums (4–13)
 
 4. BRUSSELS · DIPLOMACY — EU meets Britain at the second EU–UK summit.
-   Costa and von der Leyen welcome PM Burnham; a joint declaration is
-   expected. (EU Council, 20 Nov)
+   Costa and von der Leyen welcome PM Burnham; declaration due.
+   (EU Council, 20 Nov)
 5. SEOUL / TOKYO · MARKETS — AI sell-off sinks Asia to its worst week
    since 2020. Nikkei −4.8%, KOSPI −5.7%, SoftBank −15%, Taiex −6.8%;
    MSCI Asia-Pacific down 7% on the week. (Morningstar / Reuters, 20 Nov)
@@ -47,19 +46,18 @@ Science & tech 3 · Diplomacy 3 = 36.
    year; a 216-run stand with Nicholls rescues New Zealand. (ICC, 20 Nov)
 9. ROME · STRIKE — Italy grinds to a halt: CGIL general strike; rail
    stops 21:00 tonight to 20:00 Saturday. (20 Nov)
-10. TOKYO · ECONOMY — Japan core inflation quickens to 2.2%. October
-    CPI above the BoJ's 2% target for a second month; a December hike
-    to 1.5% is now expected. (Reuters, 20 Nov)
+10. TOKYO · ECONOMY — Japan core inflation quickens to 2.2%. Above BoJ's
+    2% target a second month; Dec hike eyed. (Reuters, 20 Nov) — detail:
+    October CPI; a December hike to 1.5% is now expected.
 11. SENEGAL · MIGRATION — Migrant boat capsizes off Senegal. Four bodies
-    recovered, dozens missing after the pirogue went down off Yenne.
-    (Reuters / AP, 20 Nov)
+    recovered, dozens missing off Yenne. (Reuters / AP, 20 Nov)
 12. SAN SALVADOR · POLITICS — Bukele files to run for a third term.
     Registers ahead of the deadline for the 28 Feb 2027 vote; a 2025
     amendment lets him seek an indefinite number of terms. (Reuters,
     20 Nov)
 13. BARCELONA · HEALTH — Pancreatic cancer pill shrinks tumours 60.7%.
-    Daraxonrasib + chemo in 61 patients; presented in Barcelona. Early
-    trial, no control group. (Revolution Medicines, 20 Nov)
+    Daraxonrasib + chemo in 61 patients; early trial. (Revolution
+    Medicines, 20 Nov) — detail: presented in Barcelona; no control group.
 
 ## Briefs (14–36)
 
@@ -94,12 +92,12 @@ Science & tech 3 · Diplomacy 3 = 36.
 
 ## By the numbers (strip)
 
-- 300,000 evacuated as Akvan hits Odisha
+- 300,000 evacuated as Akvan hits
 - $97.17 Anthropic's first close, +17%
 - 118 Phillips' historic century
-- −7% Asia shares' worst week since 2020
-- $120bn COP31 adaptation finance unresolved
-- 2.2% Japan core inflation, BoJ hike eyed
+- −7% Asia shares' worst since 2020
+- $120bn COP31 finance unresolved
+- 2.2% Japan core inflation, BoJ hike
 
 ## Timeline (THE DAY — key moments)
 
