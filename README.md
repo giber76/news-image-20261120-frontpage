@@ -2,49 +2,55 @@
 [![rank](https://make.fun/badge/news-image-20261120/giber76/news-image-20261120-frontpage/rank.svg)](https://make.fun/bounty/news-image-20261120/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
 [![reward](https://make.fun/badge/news-image-20261120/giber76/news-image-20261120-frontpage/reward.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
 
-# Friday 20 November 2026 — one front page
+# Friday 20 November 2026 — one front page, 27 stories
 
-A dense broadsheet that sums up Friday 20 November 2026's world news
-in one image: 69 stories, 7 regions, one front page — the winning genre
-of the daily news-image contests.
+A clean magazine-style front page that sums up Friday 20 November 2026
+in one image: 3 leads, 10 feature cards, 14 briefs, a 6-stat numbers
+strip and a world map pinning the 13 featured stories. Every story
+happened or was first reported that Friday, and every claim is attributed
+to its source in `STORIES.md`.
 
-- **Masthead:** "Friday 20 November 2026" — 69 stories, 7 regions.
-- **3 illustrated lead panels:** Cyclone Akvan slams into Odisha
-  (300,000 evacuated); the EU meets Britain at the second EU–UK summit
-  in Brussels; youth walk out across 25+ nations.
-- **12 illustrated medium cards:** COP31's final day, GTA 6 sales
-  passing $1.80bn, Justice Varma's resignation, the UAE–Somalia
-  ambassador row, Italy's general strike, Hayabusa2 giving up its
-  asteroid landing, the West pressing Iran at the IAEA, the ancient
-  necropolis uncovered in Egypt, Cummins in the sandpaper storm,
-  Anthropic soaring after its debut, Israel's strike on a Hezbollah
-  site, Syria hailing a UN resolution.
-- **By-the-numbers strip:** six figures from the day — 300,000
-  evacuated, $1.80bn in GTA 6 sales, $1.5tn Anthropic value, 25+
-  nations walking out, $48bn Iran-war cost, 423 rescue teams.
-- **Where it happened:** a dotted world map with 15 numbered pins,
-  matching the illustrated stories above.
-- **Also on Friday 20 November:** numbered briefs, stories 16–69 —
-  seven more added in the v2 improvement (UK cyber-ops admission,
-  France cost protests, SCO forum, MP two-child policy, Gaza aid call,
-  F1 stewards, Venezuela $12bn).
-- **DATE CHECK box:** the stories deliberately left out because they
-  were first reported before Friday — the Shenzhen trilateral, the
-  GTA VI launch, Anthropic's first trades, the ICJ Rohingya judgment,
-  the Houthi strike on Riyadh's PIF Tower, the Han Duck-soo ruling —
-  each named with its date (Thu 19 Nov).
+This is the second iteration for this competition. The first entry (69
+stories, dense broadsheet) scored 971,449 and ranked #1,182 — the briefs
+were too small to read at 300 px wide. This version keeps 27 stories and
+makes every headline and dek legible.
 
-Every story here happened or was first reported on Friday 20 November
-2026, cross-checked against live reporting (Newsmriti 20 Nov list,
-Arab News PK 20 Nov front page, EU Council, The Hindu, NDTV, Reuters,
-AFP). See STORIES.md for the full list with sources.
+## What's on the page
 
-## How it was made
+- **Leads:** Cyclone Akvan's landfall near Gopalpur, Odisha; the overnight
+  ballistic-missile barrage on Kyiv; COP31's closing day deadlocked in
+  Antalya.
+- **Features (10):** the Asia AI sell-off, BepiColombo's arrival at
+  Mercury, Burnham's first EU–UK reset summit, Japan's October CPI,
+  China's held lending rates, Phillips' 118 in Wellington, Italy's
+  general strike, the Daraxonrasib cancer trial, the CBO's AUKUS warning
+  and the SCO dialogue in New Delhi.
+- **In brief (14):** Florida's record river crest, Iowa's delayed
+  detonation, Tonga's drought closures, Seoul's impeachment push, the Hong
+  Kong Open quarter-finals, Taiwan's short-sale curbs, the ATP Finals,
+  World Children's Day, Nicholls' 175*, gold below $3,600, Samsung's
+  reshuffle, the vCenter zero-day, Bitcoin near $61,900 and Malawi's fuel
+  crisis.
+- **Numbers strip:** 300,000+ evacuated · Nikkei −4.5% · 423 rescue teams
+  · 216-run stand · 18.6 ft forecast crest · 60.7% tumour response.
+- **DATE CHECK:** the big 19 November stories (Shenzhen summit, Anthropic
+  IPO, ICJ Rohingya verdict, GTA VI launch, Van Gogh sale, Voyager 1,
+  Senate Iran vote) are labelled as *not today* so nothing is misdated.
 
-`draw.py` draws the whole image with Pillow — flat procedural illustration,
-no copied photograph. The program the grader runs is `main.py`
-(Python 3.13, standard library only): it copies `entry.png` to
-`/output/entry.png`. Run the draw step with `python3 draw.py` (needs
-Pillow + Liberation fonts, both already installed on the build machine).
-The image is 1024x1024, ~210 KB, deterministic: two runs produce
-identical bytes.
+## How it is built
+
+`draw.py` renders `entry.png` (1024×1024, Pillow, DejaVu fonts) — all
+illustrations are original vector drawings made in code. `main.py` is the
+entrypoint the grader runs: it only copies the committed `entry.png` to
+the output directory, so running it twice writes identical bytes.
+
+```sh
+python3 draw.py          # render entry.png
+python3 -P -s main.py    # grader-style run; writes $MAKEFUN_OUTPUT_DIR/entry.png
+```
+
+## Sources
+
+Every story was verified against live reporting on 20 November 2026 —
+see `STORIES.md` for the per-story sources. Claims are attributed, not
+asserted as fact.

@@ -1,206 +1,111 @@
-# News-image 20261120 — story list (69 stories)
+# News-image 20261120 — story list (27 stories)
 
-Plan A (Giber chose 2026-11-19 ~16:53 WIB): dense v5-style on v5's
-proven layout (v5: 70 stories, rank #31 top-50). 69 stories here:
-3 leads + 12 mediums + 54 briefs. Built 2026-11-20 ~07:00–07:35 WIB;
-improved to 69 stories 2026-11-20 ~11:00 WIB (+7 briefs, stories 63–69)
-on Giber's feedback ("Tambahin berita nya, buat lbh bagus kek yg 19
-november").
-Every story happened or was first reported on Friday 20 November 2026,
-cross-checked against live reporting (Newsmriti 20 Nov list, Arab News
-PK 20 Nov front page, EU Council, The Hindu, NDTV, Reuters, AFP).
+v2 rebuild, 2026-11-20. Clean magazine front page: 3 leads + 10 features
++ 14 briefs. Every story happened or was first reported on Friday
+20 November 2026, verified against live sources the same day. The four
+dubious claims from v1 (GTA 6 sales $1.80bn, Anthropic valued near
+$1.5tn, Hayabusa2 giving up on landing, Justice Varma resigning) are
+dropped entirely. Items first reported Thursday 19 November are NOT
+presented as 20 November news — they sit in the DATE CHECK strip.
 
-Regions (computed from the story data, shown on the bar): Europe 10 ·
-Americas 13 · Asia-Pacific 19 · Mideast 10 · Africa 4 · Oceania 3 ·
-World 10 = 69.
+## Leads
 
-## Leads (1–3)
+1. **Cyclone Akvan slams Odisha coast** — Landfall near Gopalpur on
+   Friday morning, winds 70–80 km/h gusting to 90; 300,000+ evacuated,
+   423 rescue teams, 9,341 shelters, 69 trains cancelled; no major
+   damage reported yet. Sources: IMD / The Hindu.
+2. **Kyiv hit by overnight missile barrage** — Ballistic missiles from
+   about 01:25, fires in three districts, Dnipro bridges damaged, a
+   Kharkiv hospital hit, four hurt; follows Putin's vow of retaliation
+   for the Crimea bridge strike. Sources: Kyiv Post / Reuters. (The
+   Dutch/Austrian embassy damage was a separate daytime strike on
+   19 Nov and is not attributed to the overnight wave.)
+3. **COP31 ends in deadlock on fossil fuels** — Closing day in Antalya,
+   no deal; slimmed draft of 80 paragraphs, no fossil-fuel phase-out,
+   no $120bn adaptation figure, still contested at midnight. Hosts push
+   a "35 by 35" clean-power goal. Sources: UN News / Reuters.
 
-1. ODISHA · STORM — Cyclone Akvan slams into Odisha. Landfall near
-   Gopalpur ~noon IST, winds 90–100 km/h gusting 110; 300,000 evacuated,
-   423 rescue teams, 105,304 in 1,224 shelters. (IMD / The Hindu, 20 Nov
-   1:43 am IST)
-2. BRUSSELS · DIPLOMACY — EU meets Britain at the second EU–UK summit.
-   Costa and von der Leyen welcome PM Burnham; a joint declaration is
-   expected. (EU Council, 20 Nov)
-3. EUROPE · PROTEST — Youth walk out across 25+ nations. International
-   Youth Day of Action: mass walkouts in the UK and 25+ countries,
-   demands on education, welfare, conscription, climate and Gaza; London
-   rally at noon. (multiple, 20 Nov)
+## Features
 
-## Mediums (4–15)
+4. **Asia's AI sell-off deepens** — Nikkei −4.5%, Kospi −4.7%,
+   SoftBank −15%, Taiex's worst week since 1990; region's worst week
+   since 2020. Sources: Nikkei / Reuters.
+5. **BepiColombo reaches Mercury** — After eight years, the ESA–JAXA
+   probe arrives; orbit capture Saturday, only the second mission ever
+   to circle Mercury. Source: ESA.
+6. **Burnham's first EU–UK reset summit** — Costa and von der Leyen host
+   the UK prime minister in Brussels; food trade, carbon-trading link
+   and youth scheme on the table. Source: EU Council.
+7. **Japan prices rise 2.3% in October** — Headline CPI up from 2.1%;
+   core 2.2%; markets price a December BoJ rise to 1.50% at about 86%.
+   Source: Statistics Bureau of Japan.
+8. **China holds lending rates** — One-year LPR 3.0%, five-year 3.5%,
+   unchanged for an 18th straight month. Source: People's Bank of China.
+9. **Phillips 118 powers New Zealand** — Day two in Wellington: 118 off
+   216 balls in a 216-run stand with Nicholls (175*); NZ 368 all out.
+   Source: Cricinfo.
+10. **Italy stops for a general strike** — CGIL's 24-hour stoppage,
+    rallies in about 100 squares against the 2027 budget; students join.
+    Source: CGIL.
+11. **Cancer pill shrinks tumours in 60.7%** — Daraxonrasib plus chemo,
+    presented in Barcelona: tumours shrank in 60.7% of 61 patients with
+    newly diagnosed metastatic pancreatic cancer. Early phase I/II trial.
+    Source: Revolution Medicines.
+12. **Sub sale would shrink US fleet, CBO warns** — Selling 3–5
+    Virginia-class boats to Australia from 2032 would leave the US Navy
+    smaller "for many years"; yards build 1.13 a year, 2.0 needed.
+    Source: Congressional Budget Office.
+13. **Modi opens SCO dialogue; Pakistan attends** — First civilisational
+    forum at Purana Qila; Pakistan's Musadik Masood Malik is the first
+    Pakistani minister to visit India since May 2023. Source: MEA.
 
-4. ANTALYA · CLIMATE — COP31 reaches its final day. Talks close today;
-   fossil phase-out and a $120bn/yr adaptation fund (by 2035) still open;
-   no breakthrough expected. (AFP, 20 Nov)
-5. NEW YORK · GAMES — GTA 6 sales pass $1.80bn, already past The
-   Odyssey's global run. (Mezha, 20 Nov 1:23 am IST)
-6. NEW DELHI · LAW — Justice Yashwant Varma resigns: "Resignation is
-   not admission of guilt," he tells the Lok Sabha Secretariat.
-   (NDTV, 20 Nov 4:49 am IST)
-7. ABU DHABI · DIPLOMACY — UAE denounces Somalia expelling its
-   ambassador; Abu Dhabi calls it irresponsible. (Arab News, 20 Nov)
-8. ROME · STRIKE — Italy grinds to a halt: CGIL general strike; rail
-   stops 21:00 tonight to 20:00 Saturday. (20 Nov)
-9. TOKYO · SPACE — Hayabusa2 gives up on landing: engine trouble ends
-   the asteroid plan; JAXA rewrites the mission. (Space, 20 Nov
-   1:30 am IST)
-10. VIENNA · NUCLEAR — West presses Iran at the IAEA: inspectors must
-    return to bombed nuclear sites. (Reuters, 20 Nov 12:10 am IST)
-11. CAIRO · ARCHAEOLOGY — Ancient necropolis uncovered at Tell Kom Abu
-    Billo: gold artifacts, jewellery, terracotta figurines. (Arab News,
-    20 Nov)
-12. SYDNEY · CRICKET — Cummins in the sandpaper storm: captaincy under
-    scrutiny after Bancroft's ball-tampering claims. (20 Nov live blog)
-13. SAN FRANCISCO · MARKETS — Anthropic soars after its debut: shares
-    jump on Wall Street; the AI firm is valued near $1.5tn. (The Hindu,
-    20 Nov 12:46 am IST; valuation reported 20 Nov)
-14. BEIRUT · STRIKE — Israel hits a Hezbollah weapons site in east
-    Lebanon; no casualties reported. (Arab News, 20 Nov)
-15. DAMASCUS · DIPLOMACY — Syria hails the UN resolution on post-war
-    progress as historic. (SANA / Arab News, 20 Nov)
+## In brief
 
-## Briefs (16–69)
+14. **Florida** — St Johns River forecast to crest at 18.6 ft on Friday
+    evening, above the 1953 record broken Thursday; schools shut, 100+
+    rescued in Brevard.
+15. **Iowa** — Friday noon detonation of 68 unstable explosive barrels
+    (about five tons of degraded lead azide) put off to Monday after the
+    governor asked.
+16. **Tonga** — Government schools close Friday as the El Niño drought
+    bites, a day after a state of emergency was declared.
+17. **Seoul** — Ruling party's push to impeach Chief Justice Cho Hee-dae
+    formalises Friday; Presidential Office denies prior consultation.
+18. **Hong Kong** — Quarter-finals day at the Hong Kong Open: Loh Kean
+    Yew meets Lakshya Sen at Kai Tak Arena.
+19. **Taipei** — Taiwan's short-sale curbs take effect Friday: stocks
+    down 3.5% or more cannot be shorted below the prior close; the
+    borrowed-share cap drops to 1%.
+20. **Turin** — ATP Finals, day six: Alcaraz faces Cobolli, then
+    Medvedev meets Tiafoe in a winner-takes-all fight for the last
+    semi-final place.
+21. **UNICEF** — World Children's Day, 20 November: "My day. My rights.
+    My future." — 37 years since the Convention on the Rights of the
+    Child.
+22. **Wellington** — Nicholls 175 not out in the 216-run stand with
+    Phillips; New Zealand 368 all out against India.
+23. **Gold** — Spot gold breaks below $3,600 to $3,551.68, its worst week
+    in eight months and lowest since September 2025.
+24. **Seoul** — Samsung names Choi Won-joon to run its mobile business,
+    replacing TM Roh, who stays co-CEO; Hwang Sang-joon takes memory.
+25. **Cyber** — Mandiant says a China-linked group used a critical
+    vCenter flaw (CVSS 9.8) as a zero-day since early September;
+    Broadcom patched it Thursday.
+26. **Crypto** — Bitcoin trades near $61,900, down about 28% for the
+    quarter, as gold slides and real rates surge.
+27. **Malawi** — Fuel queues turn violent as shortages bite: a 20-litre
+    daily ration, petrol at about $3.24 a litre — more than double the
+    world average.
 
-16. ODISHA — Trains cancelled in cyclone (Indian Railways cancels 10,
-    diverts 23)
-17. BHUBANESWAR — Schools shut for cyclone (8 districts, 20 Nov)
-18. BANSWARA — Local poll results pour in (Rajasthan ZP elections)
-19. PUNJAB — Ex-MLA Kamboj joins BJP (setback to Punjab Congress)
-20. NEW DELHI — ADG reviews poll security (Assembly polls)
-21. BENGALURU — BJP opposes scrapping laws (Karnataka anti-conversion /
-    anti-cow slaughter laws, winter session)
-22. WASHINGTON — Trump delays Iran call (pushes the war decision to
-    2027: "see what happens after Jan 1") (20 Nov 3:13 am IST)
-23. WASHINGTON — Pick denies Jan 6 "attack" (Trump's election-security
-    pick) (Democracy Docket, 20 Nov 4:32 am IST)
-24. WASHINGTON — State AGs: 2026 results (MultiState, 20 Nov)
-25. WASHINGTON — Jeffries nears House first (Guardian live, 20 Nov)
-26. WASHINGTON — Senate backs Iran strikes (rejects the resolution to
-    block Trump from striking Iran) (WaPo, 20 Nov)
-27. NEW YORK — Carriage ban ruled out (NYC horse-carriage ban
-    unconstitutional, lawsuit says) (Mint, 20 Nov)
-28. CINCINNATI — Fiona the hippo dies (swallowed a hat at the zoo)
-    (BBC, 20 Nov 2:56 am IST)
-29. BRUSSELS — Culture ministers meet (EU, 20 Nov)
-30. SHENZHEN — Japan PM lonely at APEC (Reuters, 20 Nov 12:07 am IST)
-31. SHENZHEN — Albanese: Putin must end war (APEC; Australian PM urges
-    Putin to end the Ukraine war) (20 Nov)
-32. WELLINGTON — Nicholls nears 150 (India vs NZ 1st Test, Day 2 live;
-    NZ 311/6) (Sportstar, 20 Nov 5:22 am IST)
-33. DHAKA — South Africa win first Test (beat Bangladesh on Day 5)
-    (MillenniumPost, 20 Nov 1:08 am IST)
-34. JOHANNESBURG — Bavuma ruled out (of the Bangladesh Test decider)
-    (Times of India, 20 Nov 12:02 am IST)
-35. GENEVA — Carlsen forfeit stirs row ("Continued favouritism", chess
-    world fuming) (Rediff, 20 Nov 12:55 am IST)
-36. HONG KONG — Rakshitha stuns Chen Yu Fei (Hong Kong Open)
-37. HONG KONG — Satwik-Chirag reach QFs (Hong Kong Open)
-38. BHOPAL — Women's hockey trophy begins (Women's Asian Hockey
-    Champions Trophy, 20 Nov)
-39. MUMBAI — ENE Repeat opens in cinemas (Day 1 box office) (Sacnilk,
-    20 Nov 12:54 am IST)
-40. GOOGLE — Android checks all installs (developer verification reaches
-    every install source) (Help Net Security, 20 Nov 4:33 am IST)
-41. ESA — Hera maps asteroid crash site ("superhuman" vision inspects
-    NASA's asteroid crash site) (Phys, 20 Nov 4:10 am IST)
-42. APPLE — iOS 27.3 beta adds Siri Health (and Duo Face Unlock)
-    (20 Nov 3:55 am IST)
-43. META — Instagram shields creators (push to protect creators could
-    pay for brands) (eMarketer, 20 Nov 3:03 am IST)
-44. SYDNEY — Physicists beam through brick (Australian physicists send
-    a message through solid brick using gravity) (20 Nov 2:55 am IST)
-45. VICE CITY — GTA 6: parrot finds stash (how to use a talking parrot
-    to find a stash of money) (Mashable, 20 Nov 3:00 am IST)
-46. LEONIDA — GTA VI parodies culture wars (Forbes, 20 Nov 2:27 am IST)
-47. MARKETS — AMD slides on China links (report says China links could
-    invite US scrutiny) (Reuters, 20 Nov 12:28 am IST)
-48. MARKETS — Gold tests yearly lows (sell-off continues) (FXEmpire,
-    20 Nov 3:53 am IST)
-49. GAZA — Two Palestinians killed in raids (Israeli attacks across
-    Gaza) (AFP, 20 Nov)
-50. TEHRAN — Iran war costs pass $48bn (US tally) (AP, 20 Nov)
-51. CAIRO — Egypt turns to Poland for wheat (Arab News, 20 Nov)
-52. SANAA — Yemeni army claims 715 ops (against the Houthis) (Arab News,
-    20 Nov)
-53. MUSCAT — Oman marks National Day (Fri 20 Nov)
-54. MARRAKECH — Film festival opens (Marrakech International Film
-    Festival, 20–28 Nov)
-55. ABU DHABI — Frieze art fair opens (Frieze Abu Dhabi, 20–22 Nov)
-56. DAMMAM — Air Arabia flies to Damascus (4× weekly from 20 Nov)
-57. LONDON — Patrick Stewart laid to rest ("water cremation") (Times of
-    India, 20 Nov 5:20 am IST)
-58. HOLLYWOOD — Bruno Mars's father dies (Peter Hernandez, 74) (Times of
-    India, 20 Nov 4:36 am IST)
-59. HOLLYWOOD — Nick Jonas joins rom-com (with Hannah Dodd) (Times of
-    India, 20 Nov 3:59 am IST)
-60. HOLLYWOOD — Larry Poindexter dies (66, after being hit by a car)
-    (Times of India, 20 Nov 3:19 am IST)
-61. LONDON — Rob Brydon's fake agent tale (says he invented his own
-    fake agent to negotiate fees) (BBC, 20 Nov 2:44 am IST)
-62. CARDIFF — Welsh Luke Skywalker voiced (Star Wars actor "thrilled" to
-    voice the Welsh Luke Skywalker) (BBC, 20 Nov 12:37 am IST)
-63. LONDON — UK admits offensive cyber ops: Britain is conducting
-    offensive cyber operations against Russia, China, Iran and North
-    Korea, the UK's top military officer confirms — the first such
-    public admission. 1,831 reports of cyber attacks this year, 80
-    nationally significant. (Sky News, 20 Nov 03:00 UTC)
-64. PARIS — Fourth weekend of cost protests: France sees a fourth
-    consecutive weekend of nationwide demonstrations against the
-    cost of living. (Paris Eye, 20 Nov 03:17 AM)
-65. NEW DELHI — Modi opens SCO dialogue forum: PM Modi opens the SCO
-    Civilizational Dialogue Forum, saying civilisations must serve as
-    "bridges of peace and understanding" in a world of turbulence.
-    (sarasij / ANI, 20 Nov 2026)
-66. BHOPAL — MP scraps two-child policy: Madhya Pradesh scraps its
-    two-child norm for contesting local-body elections, saying it
-    "amounts to a violation of human rights". (The Hindu, 20 Nov 2026)
-67. GAZA — Four nations urge aid access: Australia, Canada, Italy and
-    the UK call on Israel to let humanitarian aid reach flooded areas
-    of Gaza. (Paris Eye, 20 Nov 03:17 AM)
-68. F1 — Full-time stewards from 2027: Formula 1 will introduce
-    full-time race stewards from the 2027 season. (BBC, 20 Nov 2026)
-69. WASHINGTON — US details Venezuela $12bn: the US State Department
-    publishes a 53-page report detailing how more than $12bn in revenue
-    from Venezuelan oil and mineral resources has been handled, nearly a
-    year after US forces captured Nicolas Maduro. (Paris Eye, 20 Nov
-    03:17 AM)
+## Numbers strip
 
-## By the numbers (strip)
+300,000+ evacuated (Akvan) · Nikkei −4.5% · 423 rescue teams (Odisha) ·
+216-run stand (Phillips–Nicholls) · 18.6 ft forecast crest (St Johns
+River) · 60.7% tumour response (Daraxonrasib).
 
-- 300,000 evacuated as Akvan hits Odisha
-- $1.80bn GTA 6 sales top The Odyssey
-- $1.5tn Anthropic's reported value
-- 25+ nations in youth walkouts
-- $48bn cost of the Iran war, US tally
-- 423 rescue teams in Odisha
+## DATE CHECK — first reported Thursday 19 November, not today
 
-## DATE CHECK (excluded — first reported BEFORE Friday 20 Nov)
-
-- The Shenzhen trilateral — Trump, Xi and Putin's joint peace
-  declaration (Thu 19 Nov)
-- GTA VI's launch day (Thu 19 Nov)
-- Anthropic's first trades at $83 (Thu 19 Nov)
-- The ICJ Rohingya judgment — Myanmar committed genocide (Thu 19 Nov)
-- The Houthi strike on Riyadh's PIF Tower (Thu 19 Nov)
-- Han Duck-soo's Supreme Court ruling (Thu 19 Nov)
-
-Note on date discipline: several "20 Nov" aggregator headlines are
-actually 19 Nov events reported overnight IST (UTC+5:30) — the ICJ
-judgment, the PIF Tower strike and the Shenzhen trilateral were all
-first reported on 19 Nov and are excluded above, even though some
-outlets timestamp them 20 Nov IST. The Voyager 1 light-day milestone
-was Wed 18 Nov and is not on the page either.
-
-Checked and EXCLUDED during the v2 improvement (2026-11-20 ~11:00 WIB)
-— all look like 20 Nov headlines but are earlier events:
-- Pete Rose pardoned by Trump — FIRST REPORTED Thu 19 Nov (Reuters,
-  19 Nov; fieldlevelmedia 19 Nov 5:52 pm).
-- Bogota / Colombia protests — national strike was Thu 19 Nov (US
-  Embassy alert 17 Nov warned of the 19 Nov strike; protests happened
-  19 Nov).
-- California subpoenas Nvidia — the subpoena was served Thu 19 Nov
-  (Reuters 19 Nov; "subpoenaed Nvidia on 19 November").
-- Herzog taps Eisenkot to form government — mandate handed over Sun
-  8 Nov 2026 (Wirony, 9 Nov; The Trent, 10 Nov); the 20 Nov item is a
-  stale re-report of a 12-day-old event.
+Trump–Xi–Putin Shenzhen summit · Anthropic's $83 IPO pricing and Nasdaq
+debut · ICJ rules Myanmar committed genocide against the Rohingya · GTA VI
+midnight launch · $190.4m Van Gogh sale · Voyager 1 one light-day from
+the Sun · Senate rejects Iran war-powers measure.
