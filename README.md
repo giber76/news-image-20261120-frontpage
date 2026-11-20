@@ -5,10 +5,10 @@
 # Friday 20 November 2026 — one front page
 
 A dense broadsheet that sums up Friday 20 November 2026's world news
-in one image: 62 stories, 7 regions, one front page — the winning genre
+in one image: 69 stories, 7 regions, one front page — the winning genre
 of the daily news-image contests.
 
-- **Masthead:** "Friday 20 November 2026" — 62 stories, 7 regions.
+- **Masthead:** "Friday 20 November 2026" — 69 stories, 7 regions.
 - **3 illustrated lead panels:** Cyclone Akvan slams into Odisha
   (300,000 evacuated); the EU meets Britain at the second EU–UK summit
   in Brussels; youth walk out across 25+ nations.
@@ -24,7 +24,10 @@ of the daily news-image contests.
   nations walking out, $48bn Iran-war cost, 423 rescue teams.
 - **Where it happened:** a dotted world map with 15 numbered pins,
   matching the illustrated stories above.
-- **Also on Friday 20 November:** numbered briefs, stories 16–62.
+- **Also on Friday 20 November:** numbered briefs, stories 16–69 —
+  seven more added in the v2 improvement (UK cyber-ops admission,
+  France cost protests, SCO forum, MP two-child policy, Gaza aid call,
+  F1 stewards, Venezuela $12bn).
 - **DATE CHECK box:** the stories deliberately left out because they
   were first reported before Friday — the Shenzhen trilateral, the
   GTA VI launch, Anthropic's first trades, the ICJ Rohingya judgment,

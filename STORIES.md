@@ -1,15 +1,18 @@
-# News-image 20261120 — story list (62 stories)
+# News-image 20261120 — story list (69 stories)
 
 Plan A (Giber chose 2026-11-19 ~16:53 WIB): dense v5-style on v5's
-proven layout (v5: 70 stories, rank #31 top-50). 62 stories here:
-3 leads + 12 mediums + 47 briefs. Built 2026-11-20 ~07:00–07:35 WIB.
+proven layout (v5: 70 stories, rank #31 top-50). 69 stories here:
+3 leads + 12 mediums + 54 briefs. Built 2026-11-20 ~07:00–07:35 WIB;
+improved to 69 stories 2026-11-20 ~11:00 WIB (+7 briefs, stories 63–69)
+on Giber's feedback ("Tambahin berita nya, buat lbh bagus kek yg 19
+november").
 Every story happened or was first reported on Friday 20 November 2026,
 cross-checked against live reporting (Newsmriti 20 Nov list, Arab News
 PK 20 Nov front page, EU Council, The Hindu, NDTV, Reuters, AFP).
 
-Regions (computed from the story data, shown on the bar): Europe 8 ·
-Americas 12 · Asia-Pacific 17 · Mideast 9 · Africa 4 · Oceania 3 ·
-World 9 = 62.
+Regions (computed from the story data, shown on the bar): Europe 10 ·
+Americas 13 · Asia-Pacific 19 · Mideast 10 · Africa 4 · Oceania 3 ·
+World 10 = 69.
 
 ## Leads (1–3)
 
@@ -57,7 +60,7 @@ World 9 = 62.
 15. DAMASCUS · DIPLOMACY — Syria hails the UN resolution on post-war
     progress as historic. (SANA / Arab News, 20 Nov)
 
-## Briefs (16–62)
+## Briefs (16–69)
 
 16. ODISHA — Trains cancelled in cyclone (Indian Railways cancels 10,
     diverts 23)
@@ -137,6 +140,31 @@ World 9 = 62.
     fake agent to negotiate fees) (BBC, 20 Nov 2:44 am IST)
 62. CARDIFF — Welsh Luke Skywalker voiced (Star Wars actor "thrilled" to
     voice the Welsh Luke Skywalker) (BBC, 20 Nov 12:37 am IST)
+63. LONDON — UK admits offensive cyber ops: Britain is conducting
+    offensive cyber operations against Russia, China, Iran and North
+    Korea, the UK's top military officer confirms — the first such
+    public admission. 1,831 reports of cyber attacks this year, 80
+    nationally significant. (Sky News, 20 Nov 03:00 UTC)
+64. PARIS — Fourth weekend of cost protests: France sees a fourth
+    consecutive weekend of nationwide demonstrations against the
+    cost of living. (Paris Eye, 20 Nov 03:17 AM)
+65. NEW DELHI — Modi opens SCO dialogue forum: PM Modi opens the SCO
+    Civilizational Dialogue Forum, saying civilisations must serve as
+    "bridges of peace and understanding" in a world of turbulence.
+    (sarasij / ANI, 20 Nov 2026)
+66. BHOPAL — MP scraps two-child policy: Madhya Pradesh scraps its
+    two-child norm for contesting local-body elections, saying it
+    "amounts to a violation of human rights". (The Hindu, 20 Nov 2026)
+67. GAZA — Four nations urge aid access: Australia, Canada, Italy and
+    the UK call on Israel to let humanitarian aid reach flooded areas
+    of Gaza. (Paris Eye, 20 Nov 03:17 AM)
+68. F1 — Full-time stewards from 2027: Formula 1 will introduce
+    full-time race stewards from the 2027 season. (BBC, 20 Nov 2026)
+69. WASHINGTON — US details Venezuela $12bn: the US State Department
+    publishes a 53-page report detailing how more than $12bn in revenue
+    from Venezuelan oil and mineral resources has been handled, nearly a
+    year after US forces captured Nicolas Maduro. (Paris Eye, 20 Nov
+    03:17 AM)
 
 ## By the numbers (strip)
 
@@ -163,3 +191,16 @@ judgment, the PIF Tower strike and the Shenzhen trilateral were all
 first reported on 19 Nov and are excluded above, even though some
 outlets timestamp them 20 Nov IST. The Voyager 1 light-day milestone
 was Wed 18 Nov and is not on the page either.
+
+Checked and EXCLUDED during the v2 improvement (2026-11-20 ~11:00 WIB)
+— all look like 20 Nov headlines but are earlier events:
+- Pete Rose pardoned by Trump — FIRST REPORTED Thu 19 Nov (Reuters,
+  19 Nov; fieldlevelmedia 19 Nov 5:52 pm).
+- Bogota / Colombia protests — national strike was Thu 19 Nov (US
+  Embassy alert 17 Nov warned of the 19 Nov strike; protests happened
+  19 Nov).
+- California subpoenas Nvidia — the subpoena was served Thu 19 Nov
+  (Reuters 19 Nov; "subpoenaed Nvidia on 19 November").
+- Herzog taps Eisenkot to form government — mandate handed over Sun
+  8 Nov 2026 (Wirony, 9 Nov; The Trent, 10 Nov); the 20 Nov item is a
+  stale re-report of a 12-day-old event.

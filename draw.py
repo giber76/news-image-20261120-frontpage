@@ -2,8 +2,8 @@
 """Friday 20 November 2026 front page (1024x1024, Pillow).
 
 Plan A (Giber chose 2026-11-19 ~16:53 WIB): dense v5-style, 55-65 stories
-on v5's proven layout (rank #31, top-50). 62 stories here: 3 leads + 12
-mediums + 47 briefs. v5 ran 4 leads; this build has exactly 3, wider
+on v5's proven layout (rank #31, top-50). 69 stories here: 3 leads + 12
+mediums + 54 briefs. v5 ran 4 leads; this build has exactly 3, wider
 (~329px each). The UTC timeline strip is replaced by a BY THE NUMBERS
 strip (6 figures from the day's stories), per the revised plan.
 
@@ -683,7 +683,7 @@ MEDIUM = [
      "SANA", pic_un),
 ]
 
-# Briefs 16-62, one short line each (kept short so the three-column panel
+# Briefs 16-69, one short line each (kept short so the three-column panel
 # prints them in full at 9pt; shrink_to_fit caps at 188px).
 BRIEFS = [
     ("ODISHA", "Trains cancelled in cyclone"),
@@ -733,6 +733,13 @@ BRIEFS = [
     ("HOLLYWOOD", "Larry Poindexter dies"),
     ("LONDON", "Rob Brydon's fake agent tale"),
     ("CARDIFF", "Welsh Luke Skywalker voiced"),
+    ("LONDON", "UK admits offensive cyber ops"),
+    ("PARIS", "Fourth weekend of cost protests"),
+    ("NEW DELHI", "Modi opens SCO dialogue forum"),
+    ("BHOPAL", "MP scraps two-child policy"),
+    ("GAZA", "Four nations urge aid access"),
+    ("F1", "Full-time stewards from 2027"),
+    ("WASHINGTON", "US details Venezuela $12bn"),
 ]
 
 # By-the-numbers strip: six figures from the day's stories
@@ -786,6 +793,7 @@ def region_counts():
         "CAIRO": "AFRICA", "SANAA": "MIDEAST", "MUSCAT": "MIDEAST",
         "MARRAKECH": "AFRICA", "ABU DHABI": "MIDEAST", "DAMMAM": "MIDEAST",
         "LONDON": "EUROPE", "HOLLYWOOD": "AMERICAS", "CARDIFF": "EUROPE",
+        "PARIS": "EUROPE", "F1": "WORLD",
     }
     for place, _ in BRIEFS:
         counts[city_region[place]] += 1
@@ -855,7 +863,7 @@ def build():
     # ---- masthead
     f = mk_font(SANSB, 11)
     d.text((10, 6), "ONE DAY OF WORLD NEWS, ONE PICTURE", font=f, fill=RED)
-    t = "62 STORIES  ·  7 REGIONS  ·  EVERY ONE FROM THIS FRIDAY"
+    t = "69 STORIES  ·  7 REGIONS  ·  EVERY ONE FROM THIS FRIDAY"
     d.text((W - 10 - d.textlength(t, font=f), 6), t, font=f, fill=RED)
     f = mk_font(SERIFB, 46)
     t = "Friday 20 November 2026"
@@ -885,9 +893,9 @@ def build():
 
     # ---- region bar (counts computed from the story data)
     counts = region_counts()
-    assert sum(counts.values()) == 62, counts
+    assert sum(counts.values()) == 69, counts
     y0 = 136
-    total = 62
+    total = 69
     x = 10
     f = mk_font(SANSB, 10)
     order = ["EUROPE", "AMERICAS", "ASIA", "MIDEAST", "AFRICA", "OCEANIA",
@@ -951,7 +959,7 @@ def build():
            font=fk, fill=INK)
 
     # briefs panel, three columns (18 rows per column at 15px pitch,
-    # 47 briefs = stories 16-62)
+    # 54 briefs = stories 16-69)
     d.rectangle([338, y0, 1014, 940], fill=(255, 255, 255), outline=RULE,
                 width=1)
     d.text((350, y0 + 8), "ALSO ON FRIDAY 20 NOVEMBER", font=f, fill=NAVY)
