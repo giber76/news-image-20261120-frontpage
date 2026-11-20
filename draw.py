@@ -573,12 +573,10 @@ def pic_ipo2(d, box):
         d.line([(cx, base - hi * unit), (cx, base - lo * unit)], fill=col, width=2)
         d.rectangle([cx - 5, base - max(lo, close) * unit,
                      cx + 5, base - min(lo, close) * unit], fill=col)
-    d.line([(x0 + 10, base - 74 * unit), (x1 - 10, base - 14 * unit)],
+    d.line([(x0 + 72, base - 50 * unit), (x1 - 10, base - 14 * unit)],
            fill=(255, 220, 90), width=2)
     f2 = mk_font(SANSB, max(12, int(18 * s)))
     d.text((x1 - 64, y0 + 4 * s), "$1.5tn", font=f2, fill=(255, 220, 90))
-    d.text((x0 + 8, y1 - 12 * s), "VALUATION $1.5tn", font=f,
-           fill=(180, 220, 190))
 
 
 def pic_blast(d, box):
