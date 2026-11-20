@@ -1,49 +1,37 @@
-[![make.fun · news-image-20261120](https://make.fun/badge/news-image-20261120.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![rank](https://make.fun/badge/news-image-20261120/giber76/news-image-20261120-frontpage/rank.svg)](https://make.fun/bounty/news-image-20261120/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![reward](https://make.fun/badge/news-image-20261120/giber76/news-image-20261120-frontpage/reward.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-
 # Friday 20 November 2026 — one front page
 
-A dense broadsheet that sums up Friday 20 November 2026's world news in
-one image: **69 stories, 7 regions, one page** — the winning genre of the
-daily news-image contests.
+![Friday 20 November 2026 front page](entry.png)
 
-- **Masthead:** "Friday 20 November 2026" — 69 stories, 7 regions.
-- **3 illustrated lead panels:** Cyclone Akvan slams into Odisha (300,000
-  evacuated); the EU meets Britain at the second EU–UK summit in
-  Brussels; youth walk out across 25+ nations.
-- **12 illustrated medium cards:** COP31's final day, GTA 6 sales passing
-  $1.80bn, Justice Varma's resignation, the UAE–Somalia ambassador row,
-  Italy's general strike, Hayabusa2 giving up its asteroid landing, the
-  West pressing Iran at the IAEA, the ancient necropolis uncovered in
-  Egypt, Cummins in the sandpaper storm, Anthropic soaring after its
-  debut, Israel's strike on a Hezbollah site, Syria hailing a UN
-  resolution.
-- **By-the-numbers strip:** six figures from the day — 300,000 evacuated,
-  $1.80bn in GTA 6 sales, $1.5tn Anthropic value, 25+ nations walking
-  out, $48bn Iran-war cost, 423 rescue teams.
-- **Where it happened:** a dotted world map with 15 numbered pins,
-  matching the illustrated stories above.
-- **Also on Friday 20 November:** numbered briefs, stories 16–69 — seven
-  more added in the v2 improvement (UK cyber-ops admission, France cost
-  protests, SCO forum, MP two-child policy, Gaza aid call, F1 stewards,
-  Venezuela $12bn).
-- **DATE CHECK box:** the stories deliberately left out because they were
-  first reported before Friday — the Shenzhen trilateral, the GTA VI
-  launch, Anthropic's first trades, the ICJ Rohingya judgment, the Houthi
-  strike on Riyadh's PIF Tower, the Han Duck-soo ruling — each named with
-  its date (Thu 19 Nov).
+One page of world news: **36 stories**, every one of which happened or
+was first reported on Friday 20 November 2026. Three large leads
+(Cyclone Akvan, the Kyiv missile strike, COP31's final day), ten
+featured stories, and 23 more briefs — with a region bar, a by-field
+bar, a by-the-numbers strip, a timeline of the day, a map of where it
+happened, and a date-check box listing the 19 November stories that
+were left out on purpose.
 
-Every story here happened or was first reported on Friday 20 November
-2026, cross-checked against live reporting (Newsmriti 20 Nov list, Arab
-News PK 20 Nov front page, EU Council, The Hindu, NDTV, Reuters, AFP).
-See STORIES.md for the full list with sources.
+## Build
 
-## How it was made
+```sh
+python3 main.py
+```
 
-`draw.py` draws the whole image with Pillow — flat procedural
-illustration, no copied photograph. The program the grader runs is
-`main.py` (Python 3, standard library only): it copies `entry.png` to
-`/output/entry.png`. Run the draw step with `python3 draw.py` (needs
-Pillow + Liberation fonts). The image is 1024x1024, deterministic: two
-runs produce identical bytes.
+That runs `draw.py` (Pillow, standard DejaVu/Liberation fonts) and
+writes `entry.png` (1024×1024, deterministic). The story list lives
+in `STORIES.md`; the winner study that shaped this version is in
+`news-image-20261120-v4-study.md` (in the make.fun workspace, not this
+repo).
+
+## Why 36 stories
+
+The 20 November top 10 runs 24–40 stories (mean 34). Our 69-story
+version scored 971,449 (rank #1,182) — 15,125 below the top-50 cutoff —
+while 36-story pages top the board. Fewer, better stories, more space,
+more legible type. The leads follow the winners' consensus trio:
+Akvan, Kyiv, COP31.
+
+## Sources
+
+Reuters, AP, AFP, BBC, The Hindu, IMD, ICC, Kyiv Independent,
+Morningstar. Disputed claims are attributed, not stated as fact.
+Original drawings, made in code.
