@@ -24,6 +24,15 @@ on the four weakest illustrations only: COP31's globe is a proper Earth
 the cricket batsman is bigger with a bladed bat and taller stumps;
 the migrant boat gains a planked hull, a life ring and a person in the
 water; the cancer pill gains a pill bottle beside the capsule.
+
+v10: same 36 stories, same selection, layout and hierarchy as v9, plus
+the winner devices from news-image-20261119's top 3 (#1 superskie 37
+stories, #2 gentle-badger-68 46, #3 nomind 50 — all share them): the
+timeline strip is relabelled "THE DAY IN UTC"; the DATE CHECK box is
+restructured (left-out list + an explicit Not yet list); every card's
+kicker row now names its source beside the HOW SURE dot (the source
+moves out of the dek, as the winners do). HOW TO READ box skipped —
+no free space on the page. Sources footer and region bar kept.
 """
 
 import math
@@ -102,19 +111,22 @@ LEADS = [
     {
         "n": 1, "place": "ODISHA", "field": "STORM",
         "head": "Cyclone Akvan slams into Odisha",
-        "dek": "Landfall near Gopalpur at noon; 300,000 evacuated, 423 rescue teams out. — IMD",
+        "dek": "Landfall near Gopalpur at noon; 300,000 evacuated, 423 rescue teams out.",
+        "src": "IMD",
         "scene": "cyclone",
     },
     {
         "n": 2, "place": "KYIV", "field": "WAR",
         "head": "Russia fires a wave of ballistic missiles at Kyiv",
-        "dek": "Missiles from 01:25; 3 Dnipro bridges hit. — Kyiv Independent",
+        "dek": "Missiles from 01:25; 3 Dnipro bridges hit.",
+        "src": "Kyiv Independent",
         "scene": "kyiv",
     },
     {
         "n": 3, "place": "ANTALYA", "field": "CLIMATE",
         "head": "COP31 reaches its final day deadlocked",
-        "dek": "Phase-out dropped; $120bn adaptation fund unresolved. — AFP",
+        "dek": "Phase-out dropped; $120bn adaptation fund unresolved.",
+        "src": "AFP",
         "scene": "cop31",
     },
 ]
@@ -122,43 +134,53 @@ LEADS = [
 MEDIUMS = [
     {"n": 4, "place": "BRUSSELS", "field": "DIPLOMACY",
      "head": "EU meets Britain at second EU–UK summit",
-     "dek": "Costa and von der Leyen host PM Burnham; declaration due. — EU Council",
+     "dek": "Costa and von der Leyen host PM Burnham; declaration due.",
+     "src": "EU Council",
      "scene": "flags"},
     {"n": 5, "place": "SEOUL / TOKYO", "field": "MARKETS",
      "head": "AI sell-off sinks Asia to worst week since 2020",
-     "dek": "Nikkei −4.8%, KOSPI −5.7%, SoftBank −15%. — Morningstar",
+     "dek": "Nikkei −4.8%, KOSPI −5.7%, SoftBank −15%.",
+     "src": "Morningstar",
      "scene": "chart_down"},
     {"n": 6, "place": "NEW YORK", "field": "GAMES",
      "head": "GTA 6 sales pass $1.80bn",
-     "dek": "Already past The Odyssey's global run. — Mezha",
+     "dek": "Already past The Odyssey's global run.",
+     "src": "Mezha",
      "scene": "gta"},
     {"n": 7, "place": "SAN FRANCISCO", "field": "MARKETS",
      "head": "Anthropic ends its first day up 17%",
-     "dek": "Shares close at $97.17, above the $83 offer. — Morningstar",
+     "dek": "Shares close at $97.17, above the $83 offer.",
+     "src": "Morningstar",
      "scene": "chart_up"},
     {"n": 8, "place": "WELLINGTON", "field": "CRICKET",
      "head": "Phillips makes history with 118",
-     "dek": "First batter with centuries vs India in all three formats in one year. — ICC",
+     "dek": "First batter with centuries vs India in all three formats in one year.",
+     "src": "ICC",
      "scene": "cricket"},
     {"n": 9, "place": "ROME", "field": "STRIKE",
      "head": "Italy grinds to a halt",
-     "dek": "CGIL general strike; rail stops 21:00 tonight to Saturday. — ANSA",
+     "dek": "CGIL general strike; rail stops 21:00 tonight to Saturday.",
+     "src": "ANSA",
      "scene": "strike"},
     {"n": 10, "place": "TOKYO", "field": "ECONOMY",
      "head": "Japan core inflation quickens to 2.2%",
-     "dek": "Above BoJ's 2% target a second month; Dec hike eyed. — Reuters",
+     "dek": "Above BoJ's 2% target a second month; Dec hike eyed.",
+     "src": "Reuters",
      "scene": "yen"},
     {"n": 11, "place": "SENEGAL", "field": "MIGRATION",
      "head": "Migrant boat capsizes off Senegal",
-     "dek": "Four bodies recovered, dozens missing off Yenne. — Reuters",
+     "dek": "Four bodies recovered, dozens missing off Yenne.",
+     "src": "Reuters",
      "scene": "boat"},
     {"n": 12, "place": "SAN SALVADOR", "field": "POLITICS",
      "head": "Bukele files to run for a third term",
-     "dek": "Registers for the 28 Feb 2027 vote; a 2025 amendment lets him run again. — Reuters",
+     "dek": "Registers for the 28 Feb 2027 vote; a 2025 amendment lets him run again.",
+     "src": "Reuters",
      "scene": "ballot"},
     {"n": 13, "place": "BARCELONA", "field": "HEALTH",
      "head": "Pancreatic cancer pill shrinks tumours 60.7%",
-     "dek": "Daraxonrasib + chemo in 61 patients; early trial. — Revolution Medicines",
+     "dek": "Daraxonrasib + chemo in 61 patients; early trial.",
+     "src": "Rev. Medicines",
      "scene": "pill"},
 ]
 
@@ -228,12 +250,15 @@ TIMELINE = [
     ("Midnight", "COP31 text due"),
 ]
 
+# v10: restructured like the 19 Nov winners' DATE CHECK — an explicit
+# left-out list, then an explicit Not yet list.
 DATECHECK = (
-    "First reported Thursday 19 Nov, so NOT on this page as news: the Shenzhen "
+    "Left out on purpose — first reported Thursday 19 Nov: the Shenzhen "
     "trilateral · Anthropic's $83 IPO pricing · the ICJ Rohingya judgment · "
     "GTA VI's launch · the $190.4m Van Gogh sale · the Houthi strike on Riyadh's "
     "PIF Tower · Han Duck-soo's ruling · Pete Rose's pardon · Hayabusa2's "
-    "asteroid-target change (JAXA, 17 Nov). Not yet: COP31's final deal."
+    "asteroid-target change (JAXA, 17 Nov). Not yet: COP31's final deal "
+    "(due midnight) · the end of Italy's rail strike (Saturday)."
 )
 
 SOURCES = (
@@ -756,9 +781,10 @@ def main():
     # ---- timeline strip
     y = 196
     d.rectangle([M, y, W - M, y + 20], fill=(232, 226, 208))
+    # v10: labelled as a UTC timeline, as the 19 Nov winners do.
     f_tl = font(SANS_BOLD, 10)
-    d.text((M + 6, y + 4), "THE DAY", font=f_tl, fill=RED)
-    tx = M + 78
+    d.text((M + 6, y + 4), "THE DAY IN UTC", font=f_tl, fill=RED)
+    tx = M + 6 + d.textlength("THE DAY IN UTC", font=f_tl) + 8
     f_tlb = font(SANS, 9)
     for i, (t, what) in enumerate(TIMELINE):
         seg = f"{t}  {what}"
@@ -779,6 +805,11 @@ def main():
         ty = y + scene_h + 4
         f_kick = font(SANS_BOLD, 10)
         d.text((lx, ty), f"{lead['place']} · {lead['field']}", font=f_kick, fill=RED)
+        # v10: source named in the kicker, beside the HOW SURE dot
+        # (as the 19 Nov winners do); right-aligned before the dot.
+        f_src = font(SANS, 9)
+        sw = d.textlength(lead["src"], font=f_src)
+        d.text((lx + lead_w - 6 - 8 - sw, ty), lead["src"], font=f_src, fill=GREY)
         sure_dot(d, lx + lead_w - 6, ty + 5, HOW_SURE[lead["n"]])
         ty += 14
         f_head = font(SERIF, 17)
@@ -804,6 +835,10 @@ def main():
             ty = my + scene_h + 3
             f_kick = font(SANS_BOLD, 8)
             d.text((mx, ty), f"{m['place']} · {m['field']}", font=f_kick, fill=RED)
+            # v10: source named in the kicker, beside the HOW SURE dot.
+            f_src = font(SANS, 8)
+            sw = d.textlength(m["src"], font=f_src)
+            d.text((mx + med_w - 6 - 7 - sw, ty), m["src"], font=f_src, fill=GREY)
             sure_dot(d, mx + med_w - 6, ty + 5, HOW_SURE[m["n"]])
             ty += 11
             f_head = font(SANS_BOLD, 11)
