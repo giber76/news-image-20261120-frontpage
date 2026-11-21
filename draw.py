@@ -10,6 +10,12 @@ BY FIELD bar, switches to a solid dark map and 2-column briefs.
 Every story happened or was first reported on Friday 20 November 2026.
 See STORIES.md and news-image-20261120-v4-study.md.
 Deterministic: no randomness, no timestamps in the image.
+
+v7: same 36 stories and layout; the abstract illustrations are redrawn
+as literal scenes (Kyiv's trend-line missiles, the cricket field, the
+strike dots, the yen number, the ballot bar, the GTA sunset, the small
+cyclone) and a HOW SURE legend marks each card CONFIRMED / CLAIM /
+FORECAST (dots in the kicker rows).
 """
 
 import math
@@ -274,22 +280,38 @@ CONTINENTS = [
 # ---------------------------------------------------------------- scenes
 
 def scene_cyclone(d, x, y, w, h):
-    d.rectangle([x, y, x + w, y + h], fill=(70, 120, 170))
+    # v7: bigger, denser cyclone — storm bands fill the empty sky, the
+    # spiral is thicker and wider, the eye is warmer, rain sweeps the
+    # whole frame, and a shoreline with a surge wave anchors the bottom.
+    d.rectangle([x, y, x + w, y + h], fill=(58, 105, 155))
+    d.rectangle([x, y, x + w, y + 14], fill=(38, 70, 110))
+    d.rectangle([x, y + 14, x + w, y + 20], fill=(48, 88, 132))
     d.rectangle([x, y + h - 26, x + w, y + h], fill=(90, 140, 90))
-    cx, cy = x + w // 2, y + h // 2 - 6
-    for r in range(12, 62, 9):
-        d.arc([cx - r, cy - r, cx + r, cy + r], start=200, end=470,
-              fill=(255, 255, 255), width=4)
-    d.ellipse([cx - 9, cy - 9, cx + 9, cy + 9], fill=(255, 210, 90))
-    for i in range(14):
-        rx = x + 8 + (i * 23) % (w - 16)
-        ry = y + 8 + (i * 17) % (h - 40)
-        d.line([rx, ry, rx - 4, ry + 10], fill=(220, 235, 250), width=2)
+    d.rectangle([x, y + h - 26, x + w, y + h - 22], fill=(210, 190, 140))
+    d.arc([x + 10, y + h - 34, x + 90, y + h - 12], start=180, end=360,
+          fill=(255, 255, 255), width=3)
+    cx, cy = x + w // 2 + 18, y + h // 2 - 8
+    d.arc([cx - 78, cy - 58, cx + 78, cy + 58], start=150, end=430,
+          fill=(200, 220, 240), width=3)
+    for i, r in enumerate(range(14, 58, 8)):
+        start = 180 + i * 25
+        d.arc([cx - r, cy - r, cx + r, cy + r], start=start, end=start + 270,
+              fill=(255, 255, 255), width=6)
+    d.ellipse([cx - 14, cy - 14, cx + 14, cy + 14], fill=(255, 205, 80))
+    d.ellipse([cx - 14, cy - 14, cx + 14, cy + 14],
+              outline=(255, 255, 255), width=2)
+    for i in range(22):
+        rx = x + 6 + (i * 29) % (w - 12)
+        ry = y + 22 + (i * 19) % (h - 52)
+        d.line([rx, ry, rx - 5, ry + 11], fill=(215, 232, 248), width=2)
     f = font(SANS_BOLD, 11)
     d.text((x + 8, y + h - 22), "90–100 KM/H", font=f, fill=(255, 255, 255))
 
 
 def scene_kyiv(d, x, y, w, h):
+    # v7: the three straight orange "trend lines" are gone — missiles now
+    # fall on curved trails, with explosion bursts where they hit and a
+    # damaged Dnipro bridge silhouette along the bottom.
     d.rectangle([x, y, x + w, y + h], fill=(12, 18, 38))
     for i in range(24):
         sx = x + (i * 37) % w
@@ -303,12 +325,43 @@ def scene_kyiv(d, x, y, w, h):
         d.rectangle([bx, base - bh, bx + 30, base], fill=(20, 28, 52))
         for wy in range(base - bh + 6, base - 4, 10):
             d.rectangle([bx + 5, wy, bx + 10, wy + 5], fill=(255, 200, 90))
-    # missile trails
-    for i, (sx, sy) in enumerate([(x + 40, y + 90), (x + 160, y + 70), (x + 260, y + 85)]):
-        d.line([sx, sy, sx + 70, sy - 55], fill=(255, 140, 40), width=3)
-        d.ellipse([sx + 64, sy - 61, sx + 76, sy - 49], fill=(255, 220, 120))
+
+    def curve(p0, p1, p2, n=24):
+        pts = []
+        for k in range(n + 1):
+            t = k / n
+            px = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t ** 2 * p2[0]
+            py = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t ** 2 * p2[1]
+            pts.append((px, py))
+        return pts
+
+    # curved missile trails (warhead at the low end)
+    pts1 = curve((x + 155, y + 2), (x + 120, y + 45), (x + 78, y + 78))
+    d.line(pts1, fill=(255, 140, 40), width=3)
+    d.ellipse([pts1[-1][0] - 4, pts1[-1][1] - 4, pts1[-1][0] + 4, pts1[-1][1] + 4],
+              fill=(255, 220, 120))
+    pts2 = curve((x + 240, y + 0), (x + 228, y + 40), (x + 200, y + 72))
+    d.line(pts2, fill=(255, 140, 40), width=3)
+    d.ellipse([pts2[-1][0] - 4, pts2[-1][1] - 4, pts2[-1][0] + 4, pts2[-1][1] + 4],
+              fill=(255, 220, 120))
+    # explosion bursts where the missiles hit
+    for (bx, by) in [(x + 78, y + 80), (x + 200, y + 74)]:
+        d.ellipse([bx - 12, by - 12, bx + 12, by + 12], fill=(255, 120, 20))
+        d.ellipse([bx - 6, by - 6, bx + 6, by + 6], fill=(255, 220, 120))
+        for ang in range(0, 360, 45):
+            ex = bx + int(16 * math.cos(math.radians(ang)))
+            ey = by + int(16 * math.sin(math.radians(ang)))
+            d.line([bx, by, ex, ey], fill=(255, 180, 60), width=2)
+    # damaged bridge silhouette along the bottom (one span dropped)
+    byy = y + h - 10
+    for (sx0, sx1) in [(x, x + 168), (x + 198, x + w)]:
+        d.line([sx0, byy, sx1, byy], fill=(140, 150, 170), width=2)
+    for sx in (x + 60, x + 130, x + 250):
+        d.line([sx, byy, sx, y + h], fill=(140, 150, 170), width=2)
+    d.line([x + 168, byy, x + 198, y + h - 2], fill=(140, 150, 170), width=2)
+    d.ellipse([x + 176, byy - 5, x + 190, byy + 5], fill=(255, 120, 20))
     f = font(SANS_BOLD, 11)
-    d.text((x + 8, y + h - 20), "01:25 LOCAL · 7 WAVES", font=f, fill=(255, 255, 255))
+    d.text((x + 32, y + 10), "01:25 · 7 WAVES", font=f, fill=(255, 255, 255))
 
 
 def scene_cop31(d, x, y, w, h):
@@ -359,15 +412,33 @@ def scene_chart_down(d, x, y, w, h):
 
 
 def scene_gta(d, x, y, w, h):
-    d.rectangle([x, y, x + w, y + h], fill=(255, 120, 60))
-    d.ellipse([x + w - 55, y + 8, x + w - 15, y + 48], fill=(255, 220, 90))
-    d.rectangle([x, y + h - 30, x + w, y + h], fill=(40, 30, 60))
-    d.polygon([(x + 30, y + h - 30), (x + 60, y + 20), (x + 90, y + h - 30)],
-              fill=(120, 60, 140))
-    f = font(SANS_BOLD, 13)
-    d.text((x + 10, y + 8), "VICE CITY", font=f, fill=(255, 255, 255))
+    # v7: dusk skyline + controller, not just a sunset — the sun sets
+    # behind a lit skyline and a game controller sits in the foreground.
+    d.rectangle([x, y, x + w, y + 14], fill=(90, 45, 120))
+    d.rectangle([x, y + 14, x + w, y + 26], fill=(200, 80, 110))
+    d.rectangle([x, y + 26, x + w, y + h], fill=(255, 140, 70))
+    d.ellipse([x + w - 88, y + 4, x + w - 60, y + 32], fill=(255, 225, 130))
+    base = y + h - 12
+    d.rectangle([x, base, x + w, y + h], fill=(35, 22, 55))
+    for i, bh in enumerate([10, 18, 12, 22, 14, 20, 11, 16]):
+        bx = x + 4 + i * 24
+        d.rectangle([bx, base - bh, bx + 18, base], fill=(25, 15, 45))
+        for wy in range(base - bh + 3, base - 2, 6):
+            d.rectangle([bx + 3, wy, bx + 6, wy + 3], fill=(255, 200, 90))
+    cx0, cy0 = x + w // 2 - 30, y + h - 20
+    d.rounded_rectangle([cx0, cy0, cx0 + 60, cy0 + 16], radius=8,
+                        fill=(20, 20, 30))
+    d.ellipse([cx0 + 8, cy0 + 5, cx0 + 16, cy0 + 13], fill=(60, 60, 80))
+    d.ellipse([cx0 + 44, cy0 + 5, cx0 + 52, cy0 + 13], fill=(60, 60, 80))
+    for j, col in enumerate([(220, 60, 60), (60, 200, 80),
+                             (60, 120, 220), (240, 200, 60)]):
+        bx = cx0 + 24 + (j % 2) * 6
+        by = cy0 + 3 + (j // 2) * 6
+        d.ellipse([bx, by, bx + 4, by + 4], fill=col)
+    f = font(SANS_BOLD, 11)
+    d.text((x + 26, y + 4), "VICE CITY", font=f, fill=(255, 255, 255))
     f2 = font(SANS_BOLD, 11)
-    d.text((x + 10, y + h - 24), "$1.80BN", font=f2, fill=(255, 220, 90))
+    d.text((x + 8, y + h - 14), "$1.80BN", font=f2, fill=(255, 220, 90))
 
 
 def scene_chart_up(d, x, y, w, h):
@@ -382,32 +453,66 @@ def scene_chart_up(d, x, y, w, h):
 
 
 def scene_cricket(d, x, y, w, h):
+    # v7: batsman + stumps + ball on a pitch, not a green field + dot.
     d.rectangle([x, y, x + w, y + h], fill=(60, 140, 60))
-    d.rectangle([x, y + h - 14, x + w, y + h], fill=(180, 160, 110))
-    d.polygon([(x + 60, y + 12), (x + 78, y + 12), (x + 72, y + h - 14),
-               (x + 54, y + h - 14)], fill=(220, 190, 130))
-    d.ellipse([x + w - 45, y + 14, x + w - 25, y + 34], fill=(200, 40, 40))
+    d.rectangle([x, y + 30, x + w, y + h - 6], fill=(205, 180, 130))
+    d.rectangle([x, y + h - 6, x + w, y + h], fill=(45, 110, 45))
+    sx = x + w - 26
+    for k in range(3):
+        d.rectangle([sx + k * 5, y + 18, sx + k * 5 + 3, y + 34],
+                    fill=(250, 240, 200))
+    d.rectangle([sx, y + 16, sx + 13, y + 18], fill=(250, 240, 200))
+    bx = x + w - 62
+    d.ellipse([bx, y + 8, bx + 10, y + 18], fill=(255, 255, 255))
+    d.rectangle([bx + 1, y + 18, bx + 9, y + 32], fill=(255, 255, 255))
+    d.line([bx + 3, y + 32, bx + 1, y + 44], fill=(30, 30, 40), width=3)
+    d.line([bx + 7, y + 32, bx + 9, y + 44], fill=(30, 30, 40), width=3)
+    d.line([bx + 8, y + 22, bx + 20, y + 40], fill=(180, 140, 90), width=4)
+    d.ellipse([x + 66, y + 12, x + 74, y + 20], fill=(200, 40, 40))
     f = font(SANS_BOLD, 13)
-    d.text((x + 10, y + 8), "118", font=f, fill=(255, 255, 255))
+    d.text((x + 26, y + 4), "118", font=f, fill=(255, 255, 255))
 
 
 def scene_strike(d, x, y, w, h):
-    d.rectangle([x, y, x + w, y + h], fill=(240, 230, 200))
-    d.rectangle([x, y + 4, x + w, y + 12], fill=(200, 30, 30))
-    for i in range(5):
-        px = x + 20 + i * 36
-        d.ellipse([px, y + 20, px + 14, y + 32], fill=(40, 40, 40))
-        d.rectangle([px + 6, y + 32, px + 8, y + h - 2], fill=(40, 40, 40))
+    # v7: a halted train + a strike placard, not dots on sticks.
+    d.rectangle([x, y, x + w, y + h], fill=(235, 228, 205))
+    d.line([x + 6, y + 42, x + w - 6, y + 42], fill=(60, 60, 60), width=2)
+    d.line([x + 6, y + 46, x + w - 6, y + 46], fill=(60, 60, 60), width=2)
+    d.rounded_rectangle([x + 80, y + 14, x + w - 8, y + 40], radius=4,
+                        fill=(150, 30, 30))
+    d.rounded_rectangle([x + 80, y + 14, x + 104, y + 40], radius=4,
+                        fill=(120, 20, 20))
+    for wx in (x + 88, x + 112, x + 134, x + 156, x + 174):
+        d.rectangle([wx, y + 19, wx + 14, y + 28], fill=(255, 255, 255))
+    for wx in (x + 92, x + 114, x + 136, x + 158, x + 180):
+        d.ellipse([wx, y + 40, wx + 8, y + 48], fill=(30, 30, 30))
+    d.line([x + 50, y + 30, x + 50, y + 48], fill=(90, 60, 30), width=3)
+    d.rectangle([x + 24, y + 6, x + 76, y + 30], fill=(255, 255, 255),
+                outline=(200, 30, 30), width=2)
+    f = font(SANS_BOLD, 8)
+    d.text((x + 28, y + 14), "SCIOPERO", font=f, fill=(200, 30, 30))
 
 
 def scene_yen(d, x, y, w, h):
+    # v7: price tags + a shopping basket, not a bare number.
     d.rectangle([x, y, x + w, y + h], fill=(235, 240, 245))
-    f = font(SANS_BOLD, 26)
-    d.text((x + 10, y + 2), "¥", font=f, fill=(20, 60, 120))
-    d.line([(x + 100, y + 12), (x + 130, y + 22), (x + 160, y + 18), (x + 188, y + 28)],
-           fill=(200, 40, 40), width=3)
+    for (tx, ty, label) in [(x + 26, y + 4, "¥198"), (x + 26, y + 20, "¥350")]:
+        d.rectangle([tx, ty, tx + 52, ty + 13], fill=(255, 255, 255),
+                    outline=(180, 40, 40), width=1)
+        d.ellipse([tx + 4, ty + 5, tx + 8, ty + 9], fill=(180, 40, 40))
+        f = font(SANS_BOLD, 9)
+        d.text((tx + 12, ty + 2), label, font=f, fill=(180, 40, 40))
+    bx0, by0 = x + w - 72, y + 16
+    d.arc([bx0 + 8, by0 - 8, bx0 + 56, by0 + 12], start=180, end=360,
+          fill=(120, 80, 40), width=3)
+    d.rectangle([bx0 + 12, by0 - 2, bx0 + 22, by0 + 10], fill=(60, 140, 60))
+    d.ellipse([bx0 + 30, by0 - 4, bx0 + 44, by0 + 10], fill=(230, 120, 30))
+    d.rectangle([bx0 + 46, by0, bx0 + 56, by0 + 10], fill=(200, 180, 90))
+    d.polygon([(bx0, by0 + 10), (bx0 + 64, by0 + 10), (bx0 + 58, by0 + 30),
+               (bx0 + 6, by0 + 30)], fill=(150, 100, 50))
+    d.line([bx0 + 6, by0 + 18, bx0 + 58, by0 + 18], fill=(120, 80, 40), width=2)
     f2 = font(SANS_BOLD, 12)
-    d.text((x + 10, y + h - 18), "2.2%", font=f2, fill=(200, 40, 40))
+    d.text((x + 8, y + h - 16), "2.2%", font=f2, fill=(200, 40, 40))
 
 
 def scene_boat(d, x, y, w, h):
@@ -424,13 +529,22 @@ def scene_boat(d, x, y, w, h):
 
 
 def scene_ballot(d, x, y, w, h):
+    # v7: a ballot box with a paper going into the slot, not a grey bar.
     d.rectangle([x, y, x + w, y + h], fill=(30, 60, 110))
-    d.rectangle([x + 55, y + 20, x + 145, y + h - 8], fill=(200, 200, 200))
-    d.rectangle([x + 75, y + 14, x + 125, y + 24], fill=(40, 40, 40))
-    d.line([(x + 80, y + 40), (x + 95, y + 52), (x + 125, y + 28)],
-           fill=(200, 30, 30), width=4)
-    f = font(SANS_BOLD, 10)
-    d.text((x + w - 82, y + 4), "28 FEB 2027", font=f, fill=(255, 255, 255))
+    bx0, by0 = x + 42, y + 16
+    d.rectangle([bx0, by0, bx0 + 96, y + h - 4], fill=(225, 225, 225))
+    d.rectangle([bx0, by0, bx0 + 96, by0 + 6], fill=(200, 200, 200))
+    d.rectangle([bx0 + 28, by0 + 1, bx0 + 68, by0 + 5], fill=(40, 40, 40))
+    d.polygon([(bx0 + 34, by0 + 2), (bx0 + 50, by0 + 2), (bx0 + 56, y + 2),
+               (bx0 + 40, y + 2)], fill=(255, 255, 255))
+    d.line([bx0 + 42, y + 8, bx0 + 46, y + 12], fill=(200, 30, 30), width=2)
+    d.line([bx0 + 46, y + 12, bx0 + 54, y + 4], fill=(200, 30, 30), width=2)
+    f = font(SANS_BOLD, 11)
+    t = "VOTE"
+    tw = d.textlength(t, font=f)
+    d.text((bx0 + (96 - tw) / 2, by0 + 16), t, font=f, fill=(30, 60, 110))
+    f2 = font(SANS_BOLD, 9)
+    d.text((x + w - 72, y + 4), "28 FEB 2027", font=f2, fill=(255, 255, 255))
 
 
 def scene_pill(d, x, y, w, h):
@@ -450,6 +564,32 @@ SCENES = {
     "strike": scene_strike, "yen": scene_yen, "boat": scene_boat,
     "ballot": scene_ballot, "pill": scene_pill,
 }
+
+
+# ---------------------------------------------------------------- how sure
+
+# v7: every lead/medium card carries a status dot in its kicker row
+# (right end), explained by the legend under the map. CONFIRMED = it
+# happened / is on the record. CLAIM = attributed, not yet verified
+# (#13 pill: early trial, no control group, company-reported).
+# FORECAST = scheduled / expected (#9 Italy: rail stops 21:00 tonight).
+HOW_SURE = {
+    1: "CONFIRMED", 2: "CONFIRMED", 3: "CONFIRMED", 4: "CONFIRMED",
+    5: "CONFIRMED", 6: "CONFIRMED", 7: "CONFIRMED", 8: "CONFIRMED",
+    9: "FORECAST", 10: "CONFIRMED", 11: "CONFIRMED", 12: "CONFIRMED",
+    13: "CLAIM",
+}
+HOW_SURE_COL = {
+    "CONFIRMED": (34, 139, 80),
+    "CLAIM": (200, 130, 0),
+    "FORECAST": (30, 80, 160),
+}
+
+
+def sure_dot(d, cx, cy, status, r=5):
+    """HOW SURE marker: coloured dot, centre (cx, cy), in the kicker row."""
+    d.ellipse([cx - r, cy - r, cx + r, cy + r],
+              fill=HOW_SURE_COL[status], outline=INK, width=1)
 
 
 # ---------------------------------------------------------------- page
@@ -584,6 +724,7 @@ def main():
         ty = y + scene_h + 4
         f_kick = font(SANS_BOLD, 10)
         d.text((lx, ty), f"{lead['place']} · {lead['field']}", font=f_kick, fill=RED)
+        sure_dot(d, lx + lead_w - 6, ty + 5, HOW_SURE[lead["n"]])
         ty += 14
         f_head = font(SERIF, 17)
         ty = draw_wrapped(d, lx, ty, lead["head"], f_head, INK, lead_w,
@@ -608,6 +749,7 @@ def main():
             ty = my + scene_h + 3
             f_kick = font(SANS_BOLD, 8)
             d.text((mx, ty), f"{m['place']} · {m['field']}", font=f_kick, fill=RED)
+            sure_dot(d, mx + med_w - 6, ty + 5, HOW_SURE[m["n"]])
             ty += 11
             f_head = font(SANS_BOLD, 11)
             ty = draw_wrapped(d, mx, ty, m["head"], f_head, INK, med_w,
@@ -619,7 +761,7 @@ def main():
     # ---- map + briefs
     y = 222 + lead_h + 8 + 2 * med_h + 6 + 8
     map_w = 330
-    map_h = 235
+    map_h = 210  # v7: 25px shorter to fit the HOW SURE legend below
     f_sec = font(SANS_BOLD, 13)
     d.text((M, y), "WHERE IT HAPPENED", font=f_sec, fill=RED)
     draw_map(d, M, y + 20, map_w, map_h)
@@ -627,6 +769,24 @@ def main():
     d.text((M, y + 20 + map_h + 4),
            "Red numbers mark stories 1–13. Positions are approximate.",
            font=f_leg, fill=GREY)
+    # HOW SURE legend (v7): two lines under the map caption; the dots
+    # match the status dot in each lead/medium kicker row.
+    ly = y + 20 + map_h + 16
+    f_how = font(SANS_BOLD, 9)
+    d.text((M, ly), "HOW SURE", font=f_how, fill=RED)
+    hx = M + d.textlength("HOW SURE ", font=f_how)
+    d.ellipse([hx, ly + 1, hx + 8, ly + 9], fill=HOW_SURE_COL["CONFIRMED"],
+              outline=INK, width=1)
+    d.text((hx + 12, ly), "CONFIRMED — on the record", font=f_leg, fill=INK)
+    ly += 12
+    hx = M
+    d.ellipse([hx, ly + 1, hx + 8, ly + 9], fill=HOW_SURE_COL["CLAIM"],
+              outline=INK, width=1)
+    d.text((hx + 12, ly), "CLAIM — attributed", font=f_leg, fill=INK)
+    hx += 12 + d.textlength("CLAIM — attributed ", font=f_leg)
+    d.ellipse([hx, ly + 1, hx + 8, ly + 9], fill=HOW_SURE_COL["FORECAST"],
+              outline=INK, width=1)
+    d.text((hx + 12, ly), "FORECAST — scheduled", font=f_leg, fill=INK)
 
     bx = M + map_w + 14
     bw = W - M - bx
