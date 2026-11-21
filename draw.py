@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
-"""Friday 20 November 2026 — one front page (v4, 36 stories).
+"""Friday 20 November 2026 — one front page (v8, 36 stories).
 
-Re-authored from scratch for round 2. Winner study (top 10, 20 Nov):
-winners run 24-40 stories (mean 34.2); our 69-story v3 scored 971,449
-(#1,182) while 36-story pages top the board. v4 cuts to 36 stories
-(3 leads + 10 mediums + 23 briefs), leads with the winners' consensus
-trio (Akvan, Kyiv missiles, COP31), adds a timeline strip and a
-BY FIELD bar, switches to a solid dark map and 2-column briefs.
+v8 rewrites the page from scratch in this session, keeping v7's
+36-story selection and layout skeleton (3 leads + 10 mediums + 23
+briefs, HOW SURE legend, DATE CHECK box, THE DAY timeline,
+by-the-numbers strip) and fixing what the top of the board does
+better (rank 11 and rank 15, both 988,379):
+
+1. Lead 3 is now the AI sell-off, not COP31: a full data chart
+   (dark background, descending candlesticks, a red falling arrow,
+   Taipei -6.2% / Seoul -5.2% / Tokyo -5.1% / Hong Kong -1.9%).
+   COP31 drops into the vacated medium slot (old card 5).
+2. The cyclone lead is a real map, not a spiral over open sea:
+   Odisha coastline, a dashed cyclone track, a landfall marker at
+   Gopalpur, a "Bay of Bengal" label, rain, and the 90-100 KM/H wind.
+3. The map is dotted (tan dots on cream, like the top entries) and
+   the Europe/Mideast pins are spread so none overlap.
+4. The cricket card has a bigger, clearer batsman and pitch; the 118
+   stays.
+5. The deck line names the sell-off; the numbers strip leads with
+   -6.2% (Taiwan's index, Friday's close).
+
 Every story happened or was first reported on Friday 20 November 2026.
-See STORIES.md and news-image-20261120-v4-study.md.
-Deterministic: no randomness, no timestamps in the image.
-
-v7: same 36 stories and layout; the abstract illustrations are redrawn
-as literal scenes (Kyiv's trend-line missiles, the cricket field, the
-strike dots, the yen number, the ballot bar, the GTA sunset, the small
-cyclone) and a HOW SURE legend marks each card CONFIRMED / CLAIM /
-FORECAST (dots in the kicker rows).
+See STORIES.md. Deterministic: no randomness, no timestamps in the image.
 """
 
 import math
@@ -104,10 +111,10 @@ LEADS = [
         "scene": "kyiv",
     },
     {
-        "n": 3, "place": "ANTALYA", "field": "CLIMATE",
-        "head": "COP31 reaches its final day deadlocked",
-        "dek": "Phase-out dropped; $120bn adaptation fund unresolved. — AFP",
-        "scene": "cop31",
+        "n": 3, "place": "TAIPEI · SEOUL · TOKYO", "field": "MARKETS",
+        "head": "AI sell-off sinks Asia's stock markets",
+        "dek": "Taiwan's index fell 6.2%, worst week since 1991. — Al Jazeera",
+        "scene": "selloff",
     },
 ]
 
@@ -116,10 +123,10 @@ MEDIUMS = [
      "head": "EU meets Britain at second EU–UK summit",
      "dek": "Costa and von der Leyen host PM Burnham; declaration due. — EU Council",
      "scene": "flags"},
-    {"n": 5, "place": "SEOUL / TOKYO", "field": "MARKETS",
-     "head": "AI sell-off sinks Asia to worst week since 2020",
-     "dek": "Nikkei −4.8%, KOSPI −5.7%, SoftBank −15%. — Morningstar",
-     "scene": "chart_down"},
+    {"n": 5, "place": "ANTALYA", "field": "CLIMATE",
+     "head": "COP31 reaches its final day deadlocked",
+     "dek": "Phase-out dropped; $120bn adaptation fund unresolved. — AFP",
+     "scene": "cop31"},
     {"n": 6, "place": "NEW YORK", "field": "GAMES",
      "head": "GTA 6 sales pass $1.80bn",
      "dek": "Already past The Odyssey's global run. — Mezha",
@@ -205,7 +212,7 @@ NUMBERS = [
     ("300,000", "evacuated as Akvan hits"),
     ("$97.17", "Anthropic's first close, +17%"),
     ("118", "Phillips' historic century"),
-    ("−7%", "Asia shares' worst since 2020"),
+    ("−6.2%", "Taiwan's index, Friday's close"),
     ("$120bn", "COP31 finance unresolved"),
     ("2.2%", "Japan core inflation, BoJ hike"),
 ]
@@ -241,7 +248,7 @@ PINS = {
     11: (-17, 15), 12: (-89, 14), 13: (2, 41),
 }
 
-# simplified continent polygons in lon/lat, drawn cream on a dark map
+# simplified continent polygons in lon/lat, drawn as dots on a light map
 CONTINENTS = [
     # North America
     [(-168, 66), (-140, 70), (-125, 72), (-110, 68), (-95, 70), (-85, 66),
@@ -280,38 +287,64 @@ CONTINENTS = [
 # ---------------------------------------------------------------- scenes
 
 def scene_cyclone(d, x, y, w, h):
-    # v7: bigger, denser cyclone — storm bands fill the empty sky, the
-    # spiral is thicker and wider, the eye is warmer, rain sweeps the
-    # whole frame, and a shoreline with a surge wave anchors the bottom.
-    d.rectangle([x, y, x + w, y + h], fill=(58, 105, 155))
-    d.rectangle([x, y, x + w, y + 14], fill=(38, 70, 110))
-    d.rectangle([x, y + 14, x + w, y + 20], fill=(48, 88, 132))
-    d.rectangle([x, y + h - 26, x + w, y + h], fill=(90, 140, 90))
-    d.rectangle([x, y + h - 26, x + w, y + h - 22], fill=(210, 190, 140))
-    d.arc([x + 10, y + h - 34, x + 90, y + h - 12], start=180, end=360,
-          fill=(255, 255, 255), width=3)
-    cx, cy = x + w // 2 + 18, y + h // 2 - 8
-    d.arc([cx - 78, cy - 58, cx + 78, cy + 58], start=150, end=430,
-          fill=(200, 220, 240), width=3)
-    for i, r in enumerate(range(14, 58, 8)):
-        start = 180 + i * 25
-        d.arc([cx - r, cy - r, cx + r, cy + r], start=start, end=start + 270,
-              fill=(255, 255, 255), width=6)
-    d.ellipse([cx - 14, cy - 14, cx + 14, cy + 14], fill=(255, 205, 80))
-    d.ellipse([cx - 14, cy - 14, cx + 14, cy + 14],
+    # v8: a real map, not a spiral over open sea. Beige Odisha coast on
+    # the left, blue Bay of Bengal on the right, a white spiral over the
+    # sea, a dashed track curving in to a red landfall marker at
+    # Gopalpur, rain sweeping the frame, and the 90-100 KM/H wind label.
+    d.rectangle([x, y, x + w, y + h], fill=(64, 120, 190))
+    # Odisha coastline (land on the left)
+    land = [(x, y), (x + 118, y), (x + 106, y + 30), (x + 128, y + 58),
+            (x + 112, y + h), (x, y + h)]
+    d.polygon(land, fill=(216, 196, 150))
+    d.line([(x + 118, y), (x + 106, y + 30), (x + 128, y + 58), (x + 112, y + h)],
+           fill=(170, 145, 100), width=2)
+    # dashed cyclone track: from the lower-right sea up to the coast
+    track = [(x + 306, y + 92), (x + 272, y + 84), (x + 238, y + 74),
+             (x + 204, y + 64), (x + 170, y + 58), (x + 140, y + 54),
+             (x + 122, y + 52)]
+    for (ax, ay), (bx, by) in zip(track, track[1:]):
+        steps = 6
+        for k in range(steps):
+            t0, t1 = k / steps, (k + 0.55) / steps
+            d.line([(ax + (bx - ax) * t0, ay + (by - ay) * t0),
+                    (ax + (bx - ax) * t1, ay + (by - ay) * t1)],
+                   fill=(255, 255, 255), width=2)
+    # spiral over the sea, centred on the track's mid-point
+    cx, cy = x + 218, y + 52
+    for i, r in enumerate(range(10, 40, 8)):
+        start = 200 + i * 30
+        d.arc([cx - r, cy - r, cx + r, cy + r], start=start, end=start + 260,
+              fill=(255, 255, 255), width=5)
+    d.ellipse([cx - 8, cy - 8, cx + 8, cy + 8], fill=(255, 205, 80))
+    # landfall marker at Gopalpur, on the coast
+    mx, my = x + 122, y + 52
+    d.ellipse([mx - 7, my - 7, mx + 7, my + 7], fill=(220, 40, 40),
               outline=(255, 255, 255), width=2)
+    f_lab = font(SANS_BOLD, 9)
+    d.text((mx + 10, my - 16), "GOPALPUR", font=f_lab, fill=(255, 255, 255))
+    # landfall tag, top right
+    tag = "LANDFALL • NOON"
+    f_tag = font(SANS_BOLD, 8)
+    tw = d.textlength(tag, font=f_tag)
+    d.rectangle([x + w - tw - 14, y + 5, x + w - 6, y + 19], fill=(178, 34, 34))
+    d.text((x + w - tw - 10, y + 7), tag, font=f_tag, fill=(255, 255, 255))
+    # Bay of Bengal label, bottom right
+    f_bay = font(SANS_BOLD, 9)
+    d.text((x + w - 96, y + h - 15), "BAY OF BENGAL", font=f_bay,
+           fill=(220, 235, 250))
+    # rain sweeping the whole frame
     for i in range(22):
         rx = x + 6 + (i * 29) % (w - 12)
         ry = y + 22 + (i * 19) % (h - 52)
         d.line([rx, ry, rx - 5, ry + 11], fill=(215, 232, 248), width=2)
-    f = font(SANS_BOLD, 11)
-    d.text((x + 8, y + h - 22), "90–100 KM/H", font=f, fill=(255, 255, 255))
+    # wind label, bottom left on the land (dark ink so it reads on beige)
+    f_w = font(SANS_BOLD, 11)
+    d.text((x + 8, y + h - 20), "90–100 KM/H", font=f_w, fill=(30, 50, 80))
 
 
 def scene_kyiv(d, x, y, w, h):
-    # v7: the three straight orange "trend lines" are gone — missiles now
-    # fall on curved trails, with explosion bursts where they hit and a
-    # damaged Dnipro bridge silhouette along the bottom.
+    # Missiles fall on curved trails, with explosion bursts where they
+    # hit and a damaged Dnipro bridge silhouette along the bottom.
     d.rectangle([x, y, x + w, y + h], fill=(12, 18, 38))
     for i in range(24):
         sx = x + (i * 37) % w
@@ -364,23 +397,78 @@ def scene_kyiv(d, x, y, w, h):
     d.text((x + 32, y + 10), "01:25 · 7 WAVES", font=f, fill=(255, 255, 255))
 
 
+def scene_selloff(d, x, y, w, h):
+    # v8 lead 3: the AI sell-off as a full data chart. Dark background,
+    # faint grid, descending candlesticks, a red falling arrow, and the
+    # four Friday closes down the right-hand side.
+    d.rectangle([x, y, x + w, y + h], fill=(12, 20, 44))
+    # grid
+    for gy in range(y + 20, y + h - 4, 20):
+        d.line([x + 6, gy, x + w - 122, gy], fill=(35, 48, 80), width=1)
+    for gx in range(int(x + 32), int(x + w - 122), 26):
+        d.line([gx, y + 6, gx, y + h - 6], fill=(35, 48, 80), width=1)
+    # descending candlesticks across the chart area (left ~200px)
+    chart_r = x + w - 126
+    candles = [
+        # (centre x fraction, top, bottom, colour) — body top to bottom
+        (0.06, 14, 26, (220, 60, 60)),
+        (0.18, 20, 34, (220, 60, 60)),
+        (0.30, 18, 30, (60, 200, 100)),
+        (0.42, 30, 44, (220, 60, 60)),
+        (0.54, 40, 56, (220, 60, 60)),
+        (0.66, 52, 68, (220, 60, 60)),
+        (0.78, 62, 78, (220, 60, 60)),
+        (0.90, 74, 88, (220, 60, 60)),
+    ]
+    for frac, top, bot, col in candles:
+        cxp = x + 10 + frac * (chart_r - x - 20)
+        d.line([cxp, y + top - 6, cxp, y + bot + 6], fill=col, width=1)
+        d.rectangle([cxp - 5, y + top, cxp + 5, y + bot], fill=col)
+    # red falling arrow over the candles
+    ax0, ay0 = x + 12, y + 10
+    ax1, ay1 = chart_r - 8, y + h - 14
+    d.line([ax0, ay0, ax1, ay1], fill=(255, 70, 70), width=3)
+    ang = math.atan2(ay1 - ay0, ax1 - ax0)
+    for da in (2.6, -2.6):
+        ex = ax1 - int(14 * math.cos(ang + da))
+        ey = ay1 - int(14 * math.sin(ang + da))
+        d.line([ax1, ay1, ex, ey], fill=(255, 70, 70), width=3)
+    # Friday closes down the right-hand side
+    labels = [("Taipei", "−6.2%"), ("Seoul", "−5.2%"),
+              ("Tokyo", "−5.1%"), ("Hong Kong", "−1.9%")]
+    f_city = font(SANS_BOLD, 11)
+    f_pct = font(SANS_BOLD, 12)
+    lx = x + w - 116
+    for i, (city, pct) in enumerate(labels):
+        ly = y + 10 + i * 22
+        d.text((lx, ly), city, font=f_city, fill=(255, 255, 255))
+        pw = d.textlength(pct, font=f_pct)
+        d.text((x + w - 8 - pw, ly - 1), pct, font=f_pct, fill=(255, 90, 90))
+    f_cap = font(SANS, 8)
+    d.text((x + 8, y + h - 13), "FRIDAY'S CLOSE", font=f_cap,
+           fill=(150, 160, 190))
+
+
 def scene_cop31(d, x, y, w, h):
+    # v8: COP31 is a medium card now, so the scene is drawn to fit a
+    # ~196x50 box: a small globe, a thermometer, FINAL DAY and the
+    # $120bn gap as text.
     d.rectangle([x, y, x + w, y + h], fill=(40, 90, 70))
-    # globe
-    cx, cy, r = x + 70, y + h // 2, 42
+    cx, cy, r = x + 28, y + h // 2, 17
     d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(90, 160, 200))
-    d.ellipse([cx - r + 12, cy - r + 8, cx - r + 34, cy - r + 26], fill=(60, 140, 80))
-    d.ellipse([cx + 2, cy + 6, cx + 28, cy + 30], fill=(60, 140, 80))
-    d.arc([cx - r, cy - r, cx + r, cy + r], start=0, end=360, fill=(255, 255, 255), width=2)
-    # thermometer
-    tx = x + w - 60
-    d.rounded_rectangle([tx, y + 18, tx + 16, y + h - 30], radius=8, fill=(255, 255, 255))
-    d.ellipse([tx - 6, y + h - 44, tx + 22, y + h - 16], fill=(220, 40, 40))
-    d.rectangle([tx + 5, y + 40, tx + 11, y + h - 30], fill=(220, 40, 40))
-    f = font(SANS_BOLD, 12)
-    d.text((x + w - 150, y + 10), "FINAL DAY", font=f, fill=(255, 255, 255))
-    f2 = font(SANS_BOLD, 11)
-    d.text((x + 122, y + h - 20), "$120BN FINANCE GAP", font=f2, fill=(255, 255, 255))
+    d.ellipse([cx - r + 5, cy - r + 3, cx - r + 14, cy - r + 11], fill=(60, 140, 80))
+    d.ellipse([cx + 1, cy + 2, cx + 12, cy + 12], fill=(60, 140, 80))
+    d.arc([cx - r, cy - r, cx + r, cy + r], start=0, end=360,
+          fill=(255, 255, 255), width=2)
+    # thermometer, right edge
+    tx = x + w - 22
+    d.rounded_rectangle([tx, y + 6, tx + 9, y + h - 16], radius=4,
+                        fill=(255, 255, 255))
+    d.ellipse([tx - 3, y + h - 20, tx + 12, y + h - 5], fill=(220, 40, 40))
+    d.rectangle([tx + 3, y + 16, tx + 6, y + h - 12], fill=(220, 40, 40))
+    f = font(SANS_BOLD, 9)
+    d.text((x + 52, y + 8), "FINAL DAY", font=f, fill=(255, 255, 255))
+    d.text((x + 52, y + 24), "$120BN GAP", font=f, fill=(255, 220, 130))
 
 
 def scene_flags(d, x, y, w, h):
@@ -400,20 +488,9 @@ def scene_flags(d, x, y, w, h):
     d.line([x + w - 62, y + h // 2, x + w - 12, y + h // 2], fill=(255, 255, 255), width=8)
 
 
-def scene_chart_down(d, x, y, w, h):
-    d.rectangle([x, y, x + w, y + h], fill=(24, 28, 40))
-    pts = [(x + 10, y + 8), (x + 40, y + 14), (x + 70, y + 11), (x + 100, y + 20),
-           (x + 130, y + 18), (x + 160, y + 28), (x + 185, y + 30)]
-    d.line(pts, fill=(255, 70, 70), width=3)
-    for px, py in pts:
-        d.ellipse([px - 3, py - 3, px + 3, py + 3], fill=(255, 70, 70))
-    f = font(SANS_BOLD, 11)
-    d.text((x + 10, y + h - 16), "NIKKEI −4.8% · KOSPI −5.7%", font=f, fill=(255, 120, 120))
-
-
 def scene_gta(d, x, y, w, h):
-    # v7: dusk skyline + controller, not just a sunset — the sun sets
-    # behind a lit skyline and a game controller sits in the foreground.
+    # Dusk skyline + controller: the sun sets behind a lit skyline and
+    # a game controller sits in the foreground.
     d.rectangle([x, y, x + w, y + 14], fill=(90, 45, 120))
     d.rectangle([x, y + 14, x + w, y + 26], fill=(200, 80, 110))
     d.rectangle([x, y + 26, x + w, y + h], fill=(255, 140, 70))
@@ -453,28 +530,38 @@ def scene_chart_up(d, x, y, w, h):
 
 
 def scene_cricket(d, x, y, w, h):
-    # v7: batsman + stumps + ball on a pitch, not a green field + dot.
+    # v8: a bigger, clearer batsman and pitch. The batsman fills the
+    # right half of the frame, the pitch strip runs across the middle
+    # with white crease lines, the stumps stand tall at the right edge,
+    # and the 118 is large on the left.
     d.rectangle([x, y, x + w, y + h], fill=(60, 140, 60))
-    d.rectangle([x, y + 30, x + w, y + h - 6], fill=(205, 180, 130))
-    d.rectangle([x, y + h - 6, x + w, y + h], fill=(45, 110, 45))
-    sx = x + w - 26
+    # pitch strip across the middle
+    d.rectangle([x, y + 26, x + w, y + h - 4], fill=(205, 180, 130))
+    d.line([x + 18, y + 26, x + 18, y + h - 4], fill=(255, 255, 255), width=2)
+    d.line([x + w - 44, y + 26, x + w - 44, y + h - 4], fill=(255, 255, 255), width=2)
+    d.rectangle([x, y + h - 4, x + w, y + h], fill=(45, 110, 45))
+    # stumps, tall, at the right edge
+    sx = x + w - 20
     for k in range(3):
-        d.rectangle([sx + k * 5, y + 18, sx + k * 5 + 3, y + 34],
+        d.rectangle([sx + k * 5, y + 6, sx + k * 5 + 3, y + 26],
                     fill=(250, 240, 200))
-    d.rectangle([sx, y + 16, sx + 13, y + 18], fill=(250, 240, 200))
+    d.rectangle([sx, y + 4, sx + 13, y + 6], fill=(250, 240, 200))
+    # batsman: big head, white shirt, dark pads, bat swung down-right
     bx = x + w - 62
-    d.ellipse([bx, y + 8, bx + 10, y + 18], fill=(255, 255, 255))
-    d.rectangle([bx + 1, y + 18, bx + 9, y + 32], fill=(255, 255, 255))
-    d.line([bx + 3, y + 32, bx + 1, y + 44], fill=(30, 30, 40), width=3)
-    d.line([bx + 7, y + 32, bx + 9, y + 44], fill=(30, 30, 40), width=3)
-    d.line([bx + 8, y + 22, bx + 20, y + 40], fill=(180, 140, 90), width=4)
-    d.ellipse([x + 66, y + 12, x + 74, y + 20], fill=(200, 40, 40))
-    f = font(SANS_BOLD, 13)
-    d.text((x + 26, y + 4), "118", font=f, fill=(255, 255, 255))
+    d.ellipse([bx - 1, y + 2, bx + 11, y + 14], fill=(255, 220, 180))
+    d.rectangle([bx + 1, y + 14, bx + 9, y + 30], fill=(255, 255, 255))
+    d.line([bx + 3, y + 30, bx, y + 44], fill=(30, 30, 40), width=4)
+    d.line([bx + 7, y + 30, bx + 10, y + 44], fill=(30, 30, 40), width=4)
+    d.line([bx + 9, y + 18, bx + 24, y + 40], fill=(180, 140, 90), width=5)
+    # red ball in the air, left of the batsman
+    d.ellipse([x + 62, y + 8, x + 72, y + 18], fill=(200, 40, 40))
+    # the 118, large, top left — clear of the red number badge
+    f = font(SANS_BOLD, 16)
+    d.text((x + 28, y + 3), "118", font=f, fill=(255, 255, 255))
 
 
 def scene_strike(d, x, y, w, h):
-    # v7: a halted train + a strike placard, not dots on sticks.
+    # A halted train + a strike placard.
     d.rectangle([x, y, x + w, y + h], fill=(235, 228, 205))
     d.line([x + 6, y + 42, x + w - 6, y + 42], fill=(60, 60, 60), width=2)
     d.line([x + 6, y + 46, x + w - 6, y + 46], fill=(60, 60, 60), width=2)
@@ -494,7 +581,7 @@ def scene_strike(d, x, y, w, h):
 
 
 def scene_yen(d, x, y, w, h):
-    # v7: price tags + a shopping basket, not a bare number.
+    # Price tags + a shopping basket.
     d.rectangle([x, y, x + w, y + h], fill=(235, 240, 245))
     for (tx, ty, label) in [(x + 26, y + 4, "¥198"), (x + 26, y + 20, "¥350")]:
         d.rectangle([tx, ty, tx + 52, ty + 13], fill=(255, 255, 255),
@@ -529,7 +616,7 @@ def scene_boat(d, x, y, w, h):
 
 
 def scene_ballot(d, x, y, w, h):
-    # v7: a ballot box with a paper going into the slot, not a grey bar.
+    # A ballot box with a paper going into the slot.
     d.rectangle([x, y, x + w, y + h], fill=(30, 60, 110))
     bx0, by0 = x + 42, y + 16
     d.rectangle([bx0, by0, bx0 + 96, y + h - 4], fill=(225, 225, 225))
@@ -558,8 +645,8 @@ def scene_pill(d, x, y, w, h):
 
 
 SCENES = {
-    "cyclone": scene_cyclone, "kyiv": scene_kyiv, "cop31": scene_cop31,
-    "flags": scene_flags, "chart_down": scene_chart_down, "gta": scene_gta,
+    "cyclone": scene_cyclone, "kyiv": scene_kyiv, "selloff": scene_selloff,
+    "cop31": scene_cop31, "flags": scene_flags, "gta": scene_gta,
     "chart_up": scene_chart_up, "cricket": scene_cricket,
     "strike": scene_strike, "yen": scene_yen, "boat": scene_boat,
     "ballot": scene_ballot, "pill": scene_pill,
@@ -568,11 +655,11 @@ SCENES = {
 
 # ---------------------------------------------------------------- how sure
 
-# v7: every lead/medium card carries a status dot in its kicker row
-# (right end), explained by the legend under the map. CONFIRMED = it
-# happened / is on the record. CLAIM = attributed, not yet verified
-# (#13 pill: early trial, no control group, company-reported).
-# FORECAST = scheduled / expected (#9 Italy: rail stops 21:00 tonight).
+# Every lead/medium card carries a status dot in its kicker row (right
+# end), explained by the legend under the map. CONFIRMED = it happened /
+# is on the record. CLAIM = attributed, not yet verified (#13 pill: early
+# trial, no control group, company-reported). FORECAST = scheduled /
+# expected (#9 Italy: rail stops 21:00 tonight).
 HOW_SURE = {
     1: "CONFIRMED", 2: "CONFIRMED", 3: "CONFIRMED", 4: "CONFIRMED",
     5: "CONFIRMED", 6: "CONFIRMED", 7: "CONFIRMED", 8: "CONFIRMED",
@@ -594,9 +681,25 @@ def sure_dot(d, cx, cy, status, r=5):
 
 # ---------------------------------------------------------------- page
 
+def point_in_polygon(px, py, poly):
+    """Ray-casting point-in-polygon test."""
+    inside = False
+    n = len(poly)
+    for i in range(n):
+        x1, y1 = poly[i]
+        x2, y2 = poly[(i + 1) % n]
+        if (y1 > py) != (y2 > py):
+            xinters = (py - y1) * (x2 - x1) / (y2 - y1) + x1
+            if px < xinters:
+                inside = not inside
+    return inside
+
+
 def draw_map(d, x, y, w, h):
-    """Solid dark map with cream continents and red numbered pins."""
-    d.rectangle([x, y, x + w, y + h], fill=DARKBLUE)
+    """v8: dotted world map — tan dots on cream, red numbered pins spread
+    so the Europe/Mideast cluster never overlaps."""
+    d.rectangle([x, y, x + w, y + h], fill=PAPER)
+    d.rectangle([x, y, x + w, y + h], outline=(200, 190, 160), width=1)
     lon0, lon1, lat0, lat1 = -170, 190, 85, -60
 
     def proj(lon, lat):
@@ -604,11 +707,24 @@ def draw_map(d, x, y, w, h):
         py = y + (lat0 - lat) / (lat0 - lat1) * h
         return px, py
 
-    for poly in CONTINENTS:
-        pts = [proj(lon, lat) for lon, lat in poly]
-        d.polygon(pts, fill=(232, 222, 190), outline=(200, 190, 160))
-    # pins (manual nudge for the European cluster so numbers stay readable)
-    pin_nudge = {2: (0, -7), 3: (2, 9), 4: (-9, -5), 9: (9, 3), 13: (-11, 7)}
+    polys = [[proj(lon, lat) for lon, lat in poly] for poly in CONTINENTS]
+    # dotted continents: a dot every 7px where the grid point is on land
+    dot_col = (196, 164, 116)
+    step = 7
+    gy = y + 4
+    while gy < y + h - 2:
+        gx = x + 4
+        while gx < x + w - 2:
+            if any(point_in_polygon(gx, gy, poly) for poly in polys):
+                d.ellipse([gx - 2, gy - 2, gx + 2, gy + 2], fill=dot_col)
+            gx += step
+        gy += step
+    # pins: nudged so no two pins overlap (checked: every pair >= 23px
+    # apart at radius 8)
+    pin_nudge = {
+        2: (8, -8), 3: (14, 10), 4: (-12, -8), 5: (-8, -6), 9: (-2, 12),
+        10: (8, 6), 13: (-16, 6),
+    }
     for n, (lon, lat) in PINS.items():
         px, py = proj(lon, lat)
         dx, dy = pin_nudge.get(n, (0, 0))
@@ -636,12 +752,12 @@ def main():
     d.text((W - M - d.textlength(r, font=f_mast), 6), r, font=f_mast, fill=INK)
     d.line([M, 28, W - M, 28], fill=RED, width=2)
 
-    # ---- title + subhead
+    # ---- title + subhead (deck line names the sell-off in v8)
     f_title = font(SERIF, 50)
     d.text((M, 32), "Friday 20 November 2026", font=f_title, fill=NAVY)
     f_sub = font(LIB_SERIF_IT, 15)
     d.text((M, 88),
-           "A cyclone comes ashore in Odisha · Missiles rain on Kyiv · Climate talks reach their final day",
+           "A cyclone comes ashore in Odisha · Missiles rain on Kyiv · An AI sell-off sinks Asia's markets",
            font=f_sub, fill=DARKRED)
 
     # ---- region bar (label shrinks until it fits its segment; small
@@ -761,7 +877,7 @@ def main():
     # ---- map + briefs
     y = 222 + lead_h + 8 + 2 * med_h + 6 + 8
     map_w = 330
-    map_h = 210  # v7: 25px shorter to fit the HOW SURE legend below
+    map_h = 210  # 25px shorter to fit the HOW SURE legend below
     f_sec = font(SANS_BOLD, 13)
     d.text((M, y), "WHERE IT HAPPENED", font=f_sec, fill=RED)
     draw_map(d, M, y + 20, map_w, map_h)
@@ -769,8 +885,8 @@ def main():
     d.text((M, y + 20 + map_h + 4),
            "Red numbers mark stories 1–13. Positions are approximate.",
            font=f_leg, fill=GREY)
-    # HOW SURE legend (v7): two lines under the map caption; the dots
-    # match the status dot in each lead/medium kicker row.
+    # HOW SURE legend: two lines under the map caption; the dots match
+    # the status dot in each lead/medium kicker row.
     ly = y + 20 + map_h + 16
     f_how = font(SANS_BOLD, 9)
     d.text((M, ly), "HOW SURE", font=f_how, fill=RED)

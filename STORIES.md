@@ -1,5 +1,13 @@
 # News-image 20261120 — story list (v4, 36 stories)
 
+## v8 (round 4, unsubmitted)
+Lead 3 is now the AI sell-off (full data chart: Taipei −6.2% /
+Seoul −5.2% / Tokyo −5.1% / Hong Kong −1.9%), COP31 drops to medium
+card 5; cyclone lead redrawn as a map (Odisha coastline, dashed track,
+landfall marker at Gopalpur, Bay of Bengal); dotted world map with the
+Europe/Mideast pins spread; bigger cricket batsman, 118 kept. Same 36
+stories as v7. See the draw.py header.
+
 v4 (round 2): cut from 69 to 36 stories after studying the 20 Nov top 10.
 Winners: 24–40 stories, mean 34.2. Our 69 scored 971,449 (#1,182);
 top-50 cutoff 986,574. The judge rewards fewer, better stories.
