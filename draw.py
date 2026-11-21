@@ -16,6 +16,14 @@ as literal scenes (Kyiv's trend-line missiles, the cricket field, the
 strike dots, the yen number, the ballot bar, the GTA sunset, the small
 cyclone) and a HOW SURE legend marks each card CONFIRMED / CLAIM /
 FORECAST (dots in the kicker rows).
+
+v9: same 36 stories, same selection and layout as v7 (v8's lead reshuffle
+scored worse, so the hierarchy is untouched). Targeted execution polish
+on the four weakest illustrations only: COP31's globe is a proper Earth
+(recognizable continents + highlight, thermometer gains tick marks);
+the cricket batsman is bigger with a bladed bat and taller stumps;
+the migrant boat gains a planked hull, a life ring and a person in the
+water; the cancer pill gains a pill bottle beside the capsule.
 """
 
 import math
@@ -365,18 +373,42 @@ def scene_kyiv(d, x, y, w, h):
 
 
 def scene_cop31(d, x, y, w, h):
+    # v9: a proper Earth, not a flat icon — recognizable continents
+    # (Atlantic view: Africa/Europe centre, Americas at the rim),
+    # a highlight crescent so it reads as a sphere, and a thermometer
+    # with tick marks so it reads as a gauge, not a plain bar.
     d.rectangle([x, y, x + w, y + h], fill=(40, 90, 70))
-    # globe
     cx, cy, r = x + 70, y + h // 2, 42
     d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(90, 160, 200))
-    d.ellipse([cx - r + 12, cy - r + 8, cx - r + 34, cy - r + 26], fill=(60, 140, 80))
-    d.ellipse([cx + 2, cy + 6, cx + 28, cy + 30], fill=(60, 140, 80))
-    d.arc([cx - r, cy - r, cx + r, cy + r], start=0, end=360, fill=(255, 255, 255), width=2)
-    # thermometer
+    LAND = (60, 140, 80)
+    # Africa (big, centre-left)
+    d.polygon([(cx - 22, cy - 18), (cx - 4, cy - 20), (cx + 4, cy - 12),
+               (cx + 2, cy + 2), (cx - 6, cy + 18), (cx - 14, cy + 26),
+               (cx - 20, cy + 10), (cx - 26, cy - 6)], fill=LAND)
+    # Europe (small, above Africa)
+    d.polygon([(cx - 20, cy - 26), (cx - 6, cy - 28), (cx - 2, cy - 22),
+               (cx - 12, cy - 20), (cx - 20, cy - 22)], fill=LAND)
+    # Middle East / Asia (right of Africa)
+    d.polygon([(cx + 6, cy - 22), (cx + 22, cy - 20), (cx + 26, cy - 10),
+               (cx + 16, cy - 6), (cx + 6, cy - 12)], fill=LAND)
+    # South America (far left rim)
+    d.polygon([(cx - 40, cy - 8), (cx - 30, cy - 10), (cx - 28, cy + 2),
+               (cx - 34, cy + 16), (cx - 40, cy + 8)], fill=LAND)
+    # Australia (small, bottom-right)
+    d.polygon([(cx + 14, cy + 22), (cx + 26, cy + 22), (cx + 24, cy + 30),
+               (cx + 14, cy + 30)], fill=LAND)
+    # highlight crescent (top-left) + outline
+    d.arc([cx - r + 3, cy - r + 3, cx + r - 3, cy + r - 3], start=200,
+          end=250, fill=(255, 255, 255), width=3)
+    d.arc([cx - r, cy - r, cx + r, cy + r], start=0, end=360,
+          fill=(255, 255, 255), width=2)
+    # thermometer — with tick marks so it reads as a gauge
     tx = x + w - 60
     d.rounded_rectangle([tx, y + 18, tx + 16, y + h - 30], radius=8, fill=(255, 255, 255))
     d.ellipse([tx - 6, y + h - 44, tx + 22, y + h - 16], fill=(220, 40, 40))
     d.rectangle([tx + 5, y + 40, tx + 11, y + h - 30], fill=(220, 40, 40))
+    for ty in range(y + 24, y + h - 48, 8):
+        d.line([tx + 16, ty, tx + 22, ty], fill=(120, 120, 120), width=1)
     f = font(SANS_BOLD, 12)
     d.text((x + w - 150, y + 10), "FINAL DAY", font=f, fill=(255, 255, 255))
     f2 = font(SANS_BOLD, 11)
@@ -454,21 +486,25 @@ def scene_chart_up(d, x, y, w, h):
 
 def scene_cricket(d, x, y, w, h):
     # v7: batsman + stumps + ball on a pitch, not a green field + dot.
+    # v9: a bigger, clearer batsman — a proper figure with a bladed bat,
+    # taller stumps with bails, and a bigger ball flying in.
     d.rectangle([x, y, x + w, y + h], fill=(60, 140, 60))
     d.rectangle([x, y + 30, x + w, y + h - 6], fill=(205, 180, 130))
     d.rectangle([x, y + h - 6, x + w, y + h], fill=(45, 110, 45))
-    sx = x + w - 26
+    sx = x + w - 24
     for k in range(3):
-        d.rectangle([sx + k * 5, y + 18, sx + k * 5 + 3, y + 34],
+        d.rectangle([sx + k * 5, y + 14, sx + k * 5 + 3, y + 34],
                     fill=(250, 240, 200))
-    d.rectangle([sx, y + 16, sx + 13, y + 18], fill=(250, 240, 200))
-    bx = x + w - 62
-    d.ellipse([bx, y + 8, bx + 10, y + 18], fill=(255, 255, 255))
-    d.rectangle([bx + 1, y + 18, bx + 9, y + 32], fill=(255, 255, 255))
-    d.line([bx + 3, y + 32, bx + 1, y + 44], fill=(30, 30, 40), width=3)
-    d.line([bx + 7, y + 32, bx + 9, y + 44], fill=(30, 30, 40), width=3)
-    d.line([bx + 8, y + 22, bx + 20, y + 40], fill=(180, 140, 90), width=4)
-    d.ellipse([x + 66, y + 12, x + 74, y + 20], fill=(200, 40, 40))
+    d.rectangle([sx, y + 12, sx + 13, y + 14], fill=(250, 240, 200))
+    bx = x + w - 66
+    d.ellipse([bx, y + 6, bx + 12, y + 18], fill=(255, 255, 255))
+    d.rectangle([bx + 1, y + 18, bx + 11, y + 34], fill=(255, 255, 255))
+    d.line([bx + 3, y + 34, bx + 1, y + 46], fill=(30, 30, 40), width=4)
+    d.line([bx + 9, y + 34, bx + 11, y + 46], fill=(30, 30, 40), width=4)
+    # bat: handle + flat blade, angled down toward the stumps
+    d.polygon([(bx + 10, y + 22), (bx + 16, y + 20), (bx + 26, y + 40),
+               (bx + 20, y + 44)], fill=(180, 140, 90))
+    d.ellipse([x + 60, y + 10, x + 70, y + 20], fill=(200, 40, 40))
     f = font(SANS_BOLD, 13)
     d.text((x + 26, y + 4), "118", font=f, fill=(255, 255, 255))
 
@@ -516,6 +552,8 @@ def scene_yen(d, x, y, w, h):
 
 
 def scene_boat(d, x, y, w, h):
+    # v9: a scene, not an icon — planked hull, a life ring in the water
+    # and a person in the water reaching for it.
     d.rectangle([x, y, x + w, y + h], fill=(60, 130, 180))
     for i in range(4):
         wy = y + 14 + i * 12
@@ -523,9 +561,19 @@ def scene_boat(d, x, y, w, h):
               fill=(255, 255, 255), width=2)
     d.polygon([(x + 60, y + h - 22), (x + 140, y + h - 22), (x + 130, y + h - 8),
                (x + 70, y + h - 8)], fill=(140, 90, 40))
+    d.line([x + 64, y + h - 16, x + 136, y + h - 16], fill=(100, 60, 25), width=1)
+    d.line([x + 66, y + h - 11, x + 134, y + h - 11], fill=(100, 60, 25), width=1)
     d.line([x + 100, y + h - 22, x + 100, y + 14], fill=(60, 40, 20), width=3)
     d.polygon([(x + 100, y + 14), (x + 130, y + 28), (x + 100, y + 28)],
               fill=(255, 255, 255))
+    # life ring floating in the water (left)
+    rx, ry = x + 28, y + h - 18
+    d.ellipse([rx - 9, ry - 9, rx + 9, ry + 9], outline=(255, 120, 30), width=4)
+    d.ellipse([rx - 4, ry - 4, rx + 4, ry + 4], outline=(255, 120, 30), width=2)
+    # person in the water, one arm up toward the ring
+    px, py = x + 44, y + h - 14
+    d.ellipse([px - 4, py - 4, px + 4, py + 4], fill=(220, 180, 140))
+    d.line([px + 2, py - 2, px + 10, py - 12], fill=(220, 180, 140), width=3)
 
 
 def scene_ballot(d, x, y, w, h):
@@ -548,11 +596,18 @@ def scene_ballot(d, x, y, w, h):
 
 
 def scene_pill(d, x, y, w, h):
+    # v9: capsule + pill bottle, a scene rather than a lone capsule.
     d.rectangle([x, y, x + w, y + h], fill=(245, 245, 240))
-    d.rounded_rectangle([x + 20, y + 6, x + 90, y + 26], radius=10,
+    d.rounded_rectangle([x + 8, y + 8, x + 68, y + 26], radius=9,
                         fill=(255, 255, 255), outline=(200, 40, 40), width=2)
-    d.rounded_rectangle([x + 90, y + 6, x + 160, y + 26], radius=10,
+    d.rounded_rectangle([x + 68, y + 8, x + 118, y + 26], radius=9,
                         fill=(200, 40, 40))
+    # pill bottle (right): amber body, white cap, white label
+    bx0, by0 = x + 138, y + 4
+    d.rectangle([bx0 + 12, by0, bx0 + 32, by0 + 6], fill=(255, 255, 255))
+    d.rounded_rectangle([bx0, by0 + 6, bx0 + 44, by0 + 30], radius=4,
+                        fill=(180, 120, 50))
+    d.rectangle([bx0 + 6, by0 + 12, bx0 + 38, by0 + 24], fill=(255, 255, 255))
     f = font(SANS_BOLD, 12)
     d.text((x + 14, y + h - 18), "60.7% RESPONSE", font=f, fill=(200, 40, 40))
 
